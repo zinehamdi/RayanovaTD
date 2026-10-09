@@ -1,0 +1,845 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    :root {
+        /* values as space-separated RGB channels */
+        --rn-bg-0: 5 8 12;        /* #05080C page base */
+        --rn-bg-1: 9 14 20;       /* #090E14 scene base */
+        --rn-bg-2: 14 21 29;      /* #0E151D surface */
+        --rn-bg-3: 21 31 42;      /* #151F2A elevated surface */
+        --rn-text-1: 244 241 234; /* #F4F1EA warm white – primary text */
+        --rn-text-2: 201 206 214; /* #C9CED6 secondary */
+        --rn-text-3: 138 148 163; /* #8A94A3 muted / metadata */
+        --rn-gold: 200 164 90;    /* #C8A45A premium/heritage */
+        --rn-gold-soft: 226 200 138; /* #E2C88A */
+        --rn-olive: 124 143 78;   /* #7C8F4E product/origin */
+        --rn-olive-deep: 46 56 30;/* #2E381E */
+        --rn-cyan: 63 193 201;    /* #3FC1C9 interaction/focus/active ONLY */
+        --rn-line: 255 255 255;   /* used with /0.08–0.16 alpha for borders */
+        --rn-success: 74 222 128;
+        --rn-danger: 248 113 113;
+
+        --rn-radius-sm: 10px;
+        --rn-radius-md: 16px;
+        --rn-radius-lg: 24px;
+        --rn-radius-scene: 32px;
+        --rn-space-section: clamp(4.5rem, 9vw, 8rem);
+        --rn-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --rn-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+        --rn-dur-fast: 160ms;
+        --rn-dur-base: 320ms;
+        --rn-dur-slow: 700ms;
+        --rn-shadow-1: 0 8px 24px -12px rgb(0 0 0 / .6);
+        --rn-shadow-2: 0 24px 48px -20px rgb(0 0 0 / .75);
+        --rn-shadow-scene: 0 -30px 60px -30px rgb(0 0 0 / .85);
+        --rn-container: 1280px;
+        --rn-container-wide: 1600px;
+    }
+
+    /* §9 Typography & RTL rules */
+    [dir="rtl"] .font-serif,
+    [dir="rtl"] .font-display {
+        font-family: Cairo, sans-serif;
+    }
+
+    [dir="rtl"] .uppercase {
+        text-transform: none;
+        letter-spacing: 0;
+    }
+
+    /* Global accessible focus rings */
+    :focus-visible {
+        outline: 2px solid rgb(var(--rn-cyan));
+        outline-offset: 2px;
+    }
+
+    /* Global prefers-reduced-motion rule */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    /* §10 Coherent Glass System */
+    .rn-glass-light {
+        background-color: rgb(var(--rn-bg-2) / 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgb(var(--rn-line) / 0.10);
+        transition: border-color var(--rn-dur-fast) var(--rn-ease-out), background-color var(--rn-dur-fast) var(--rn-ease-out);
+    }
+    .rn-glass-light:hover {
+        border-color: rgb(var(--rn-line) / 0.18);
+    }
+    .rn-glass-light:active {
+        background-color: rgb(var(--rn-bg-2) / 0.60);
+    }
+
+    .rn-glass {
+        background-color: rgb(var(--rn-bg-2) / 0.62);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgb(var(--rn-line) / 0.12);
+        box-shadow: var(--rn-shadow-1);
+        transition: border-color var(--rn-dur-base) var(--rn-ease-out), transform var(--rn-dur-base) var(--rn-ease-out), box-shadow var(--rn-dur-base) var(--rn-ease-out);
+    }
+    .rn-glass:hover {
+        border-color: rgb(var(--rn-line) / 0.20);
+        transform: translateY(-2px);
+    }
+    .rn-glass:active {
+        transform: translateY(0);
+    }
+
+    .rn-glass-dark {
+        background-color: rgb(var(--rn-bg-1) / 0.78);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgb(var(--rn-line) / 0.10);
+        box-shadow: var(--rn-shadow-2);
+    }
+
+    .rn-glass-strong {
+        background-color: rgb(var(--rn-bg-1) / 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgb(var(--rn-line) / 0.14);
+        box-shadow: var(--rn-shadow-2);
+    }
+
+    .rn-glass--flat,
+    .rn-glass-light.rn-glass--flat,
+    .rn-glass.rn-glass--flat,
+    .rn-glass-dark.rn-glass--flat,
+    .rn-glass-strong.rn-glass--flat {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    @media (max-width: 767px) {
+        .rn-glass-light,
+        .rn-glass,
+        .rn-glass-dark,
+        .rn-glass-strong {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    }
+
+    /* Active Nav link indicator */
+    .nav-link {
+        position: relative;
+    }
+    .nav-link[aria-current="true"] {
+        color: rgb(var(--rn-text-1)) !important;
+    }
+    .nav-link[aria-current="true"]::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0.75rem;
+        right: 0.75rem;
+        height: 2px;
+        background-color: rgb(var(--rn-gold));
+        border-radius: 9999px;
+    }
+
+    /* Hero Scrim Overlays (Reduced opacity to reveal maritime cargo background) */
+    .hero-scrim-start {
+        background: linear-gradient(to right, rgb(var(--rn-bg-0) / 0.65) 0%, rgb(var(--rn-bg-0) / 0.30) 50%, transparent 85%);
+    }
+    [dir="rtl"] .hero-scrim-start {
+        background: linear-gradient(to left, rgb(var(--rn-bg-0) / 0.65) 0%, rgb(var(--rn-bg-0) / 0.30) 50%, transparent 85%);
+    }
+    .hero-scrim-bottom {
+        background: linear-gradient(to top, rgb(var(--rn-bg-0) / 0.60) 0%, transparent 100%);
+    }
+
+    /* Hero Neon Brand Heading Glow Effect */
+    .rn-neon-gold {
+        color: #FFF9E6;
+        text-shadow:
+            0 0 4px rgba(255, 245, 210, 0.95),
+            0 0 12px rgba(248, 210, 121, 0.9),
+            0 0 24px rgba(235, 180, 65, 0.85),
+            0 0 48px rgba(212, 150, 40, 0.7),
+            0 0 80px rgba(180, 120, 25, 0.5);
+    }
+
+    /* Hero Product Showcase Rail (§Phase 15 - Clean, Distinct, Non-Overlapping) */
+    .hero-showcase-card {
+        position: relative;
+        cursor: pointer;
+        transition: transform var(--rn-dur-base) var(--rn-ease-out), box-shadow var(--rn-dur-base) var(--rn-ease-out), border-color var(--rn-dur-fast) var(--rn-ease-out);
+    }
+    .hero-showcase-card:hover,
+    .hero-showcase-card:focus-visible {
+        transform: translateY(-4px);
+        border-color: rgb(var(--rn-gold) / 0.55);
+        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.85), 0 0 20px -2px rgb(var(--rn-gold) / 0.3);
+    }
+
+    /* Coherent Glass Card Surface */
+    .rn-glass-card {
+        background-color: rgb(var(--rn-bg-2) / 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgb(var(--rn-line) / 0.12);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ======================================================== */
+    /* ======================================================== */
+    /* 🏛️ UNIFIED FRAMED CINEMATIC SCENE SYSTEM (§PHASE 15)     */
+    /* ======================================================== */
+    :root {
+        --rn-screen-margin: 1cm;
+        --rn-header-height: 72px;
+        --rn-scene-radius: 1.5rem;
+    }
+
+    .rn-scene {
+        position: relative;
+        isolation: isolate;
+        margin: var(--rn-screen-margin) auto;
+        width: calc(100% - (var(--rn-screen-margin) * 2));
+        border-radius: var(--rn-scene-radius);
+        padding-block: clamp(2rem, 4vh, 3.5rem);
+        border: 1px solid rgb(var(--rn-line) / 0.14);
+        box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgb(var(--rn-line) / 0.08);
+        background-color: rgb(var(--rn-bg-1));
+        z-index: var(--scene-z, 1);
+        scroll-margin-top: calc(var(--rn-header-height) + var(--rn-screen-margin));
+        overflow: hidden;
+        will-change: transform, opacity, filter;
+    }
+
+    /* Hero Topmost Scene */
+    .rn-scene--hero,
+    .rn-scene:first-of-type {
+        border-radius: var(--rn-scene-radius);
+        box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgb(var(--rn-line) / 0.14);
+        background-color: rgba(12, 18, 29, 0.25) !important;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Desktop Viewport Stacking & Sticky Cinematic Staging (§Phase 15) */
+    @media (min-width: 1024px) {
+        .rn-scene {
+            position: sticky;
+            top: min(calc(var(--rn-header-height) + var(--rn-screen-margin)), calc(100svh - var(--rn-screen-margin) - 100%));
+            min-height: calc(100svh - var(--rn-header-height) - (var(--rn-screen-margin) * 2));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: var(--rn-screen-margin) auto;
+            width: calc(100% - (var(--rn-screen-margin) * 2));
+            border-radius: var(--rn-scene-radius);
+            padding-block: clamp(1.25rem, 2.5vh, 2.25rem);
+            transform-origin: 50% 20%;
+            z-index: var(--scene-z, 1);
+        }
+        .rn-scene--hero,
+        .rn-scene:first-of-type {
+            min-height: calc(100svh - var(--rn-header-height) - (var(--rn-screen-margin) * 2));
+            z-index: 10;
+        }
+        .rn-scene--compact {
+            min-height: auto;
+            padding-block: clamp(1.75rem, 3vh, 2.5rem);
+        }
+    }
+
+    .rn-scene__inner {
+        position: relative;
+        z-index: 10;
+        max-width: var(--rn-container);
+        margin-inline: auto;
+        padding-inline: 1rem;
+        width: 100%;
+    }
+    @media (min-width: 640px) {
+        .rn-scene__inner {
+            padding-inline: 1.5rem;
+        }
+    }
+    @media (min-width: 1024px) {
+        .rn-scene__inner {
+            padding-inline: 2rem;
+        }
+    }
+
+    /* ======================================================== */
+    /* 🎨 CONTROLLED TONAL SCENE ATMOSPHERES (NO PURE BLACK)    */
+    /* ======================================================== */
+
+    /* Scene 1: Showroom Stage Atmosphere — Rich Olive & Warm Bronze Glow */
+    .rn-scene--showroom {
+        background-color: #0f1512;
+        background-image: 
+            radial-gradient(ellipse 75% 55% at 50% 30%, rgba(56, 78, 44, 0.42) 0%, rgba(15, 21, 18, 0.98) 75%),
+            radial-gradient(circle 450px at 85% 20%, rgba(200, 164, 90, 0.12) 0%, transparent 60%);
+    }
+
+    /* Scene 2: Export Laboratory Analysis Atmosphere — Precision Steel & Cyan */
+    .rn-scene--bento {
+        background-color: #0e1520;
+        background-image: 
+            radial-gradient(circle 650px at 70% 30%, rgba(45, 212, 191, 0.12) 0%, transparent 70%),
+            radial-gradient(circle 500px at 20% 70%, rgba(200, 164, 90, 0.08) 0%, transparent 60%);
+    }
+    .rn-scene--bento::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/images/hero/company_export_hero.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Scene 3: Multimodal Logistics & Freight Atmosphere — Industrial Ocean Steel */
+    .rn-scene--logistics {
+        background-color: #0d1624;
+        background-image: 
+            radial-gradient(ellipse 75% 55% at 50% 85%, rgba(28, 64, 110, 0.42) 0%, rgba(13, 22, 36, 0.98) 75%),
+            radial-gradient(circle 400px at 15% 20%, rgba(45, 212, 191, 0.08) 0%, transparent 60%);
+    }
+
+    /* Scene 4: Terroir & Traceability Atmosphere — Sun-Drenched Olive Earth */
+    .rn-scene--terroir {
+        background-color: #141712;
+        background-image: 
+            radial-gradient(circle 700px at 25% 40%, rgba(160, 128, 56, 0.22) 0%, transparent 70%),
+            radial-gradient(circle 650px at 80% 65%, rgba(62, 88, 48, 0.26) 0%, transparent 70%);
+    }
+    .rn-scene--terroir::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/images/hero/olive-grove-tunisia.jpg');
+        background-size: cover;
+        background-position: center top;
+        opacity: 0.14;
+        mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+        -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Scene 5: Certifications Controlled Matrix — Graphite & Gold Seal */
+    .rn-scene--certifications {
+        background-color: #11141c;
+        background-image: 
+            radial-gradient(circle 600px at 50% 45%, rgba(200, 164, 90, 0.14) 0%, transparent 75%),
+            linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: auto, 36px 36px, 36px 36px;
+    }
+
+    /* Scene 6: Final CTA Conversion Portal — Executive Warm Gold Glow */
+    .rn-scene--cta {
+        background-color: #0c111a;
+        background-image: 
+            radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200, 164, 90, 0.2) 0%, rgba(12, 17, 26, 0.98) 75%);
+    }
+    .rn-scene--cta::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/images/hero/company_export_hero.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.14;
+        mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+        -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* ======================================================== */
+    /* 🎞️ HARDWARE-ACCELERATED CINEMATIC SCROLL TRANSITIONS     */
+    /* ======================================================== */
+    @media (min-width: 1024px) {
+        .rn-scene {
+            transform-origin: 50% 20%;
+            will-change: transform, opacity, filter;
+        }
+    }
+}
+
+@layer utilities {
+    /* Utility: overflow-x: clip */
+    .overflow-x-clip {
+        overflow-x: clip;
+    }
+
+    /* Refined Multi-Layered Shadows matching Blue Grey Identity (retained for legacy showcase frame) */
+    .shadow-luxury-3d {
+        box-shadow: 
+            0 20px 25px -5px rgba(15, 23, 42, 0.08),
+            0 8px 10px -6px rgba(15, 23, 42, 0.08),
+            0 0 0 1px rgba(148, 163, 184, 0.22);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+    }
+
+    /* ======================================================== */
+    /* POWERFUL SCROLL REVEAL ANIMATIONS (PROGRESSIVE ENHANCEMENT) */
+    /* ======================================================== */
+
+    .no-js .reveal-up,
+    .no-js .reveal-scale,
+    .no-js .reveal-left,
+    .no-js .reveal-right,
+    .no-js .reveal-child {
+        opacity: 1;
+        transform: none;
+    }
+
+    .js .reveal-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity var(--rn-dur-slow, 700ms) var(--rn-ease-out), transform var(--rn-dur-slow, 700ms) var(--rn-ease-out);
+    }
+    .js .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity var(--rn-dur-slow, 700ms) var(--rn-ease-out), transform var(--rn-dur-slow, 700ms) var(--rn-ease-out);
+    }
+    .js .reveal-left {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition: opacity var(--rn-dur-slow, 700ms) var(--rn-ease-out), transform var(--rn-dur-slow, 700ms) var(--rn-ease-out);
+    }
+    .js .reveal-right {
+        opacity: 0;
+        transform: translateX(24px);
+        transition: opacity var(--rn-dur-slow, 700ms) var(--rn-ease-out), transform var(--rn-dur-slow, 700ms) var(--rn-ease-out);
+    }
+    .js .reveal-child {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity var(--rn-dur-slow, 700ms) var(--rn-ease-out), transform var(--rn-dur-slow, 700ms) var(--rn-ease-out);
+    }
+
+    .js .reveal-up.is-revealed,
+    .js .reveal-scale.is-revealed,
+    .js .reveal-left.is-revealed,
+    .js .reveal-right.is-revealed,
+    .js .reveal-child.is-revealed {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .js .reveal-up,
+        .js .reveal-scale,
+        .js .reveal-left,
+        .js .reveal-right,
+        .js .reveal-child {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+
+}
+
+/* Sleek Metallic Section Accent Stripe */
+.section-accent-line {
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #38BDF8 20%, #94A3B8 50%, #38BDF8 80%, transparent 100%);
+    border-radius: 999px;
+    opacity: 0.9;
+}
+
+/* Modern Corporate Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: #050507;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #38BDF8, #0284C7);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0EA5E9, #0369A1);
+}
+
+/* Interactive Button Active & Ripple States */
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-interactive {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+}
+.btn-interactive:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   LEGACY: hero-slider only (Parchment & Page Curl 3D System)
+   ========================================================================== */
+
+/* Perspective Wrapper for 3D depth */
+.scroll-3d-stage {
+    perspective: 2000px;
+    transform-style: preserve-3d;
+}
+
+/* Parchment Main Canvas Sheet */
+.parchment-scroll-sheet {
+    position: relative;
+    background: linear-gradient(135deg, #FFFDF8 0%, #FAF5E8 30%, #F5EED8 70%, #EFE5C6 100%);
+    border-radius: 20px;
+    box-shadow: 
+        0 30px 80px -15px rgba(12, 43, 30, 0.18),
+        0 10px 30px -5px rgba(12, 43, 30, 0.10),
+        inset 0 0 50px rgba(212, 175, 55, 0.15),
+        0 0 0 2px rgba(212, 175, 55, 0.60);
+    overflow: hidden;
+    transform-origin: left center;
+}
+
+/* 3D Rolled Cylinder Spine (Left side for LTR) */
+.scroll-roll-spine-left {
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    left: 0;
+    width: 38px;
+    z-index: 35;
+    background: linear-gradient(to right, 
+        #8C733E 0%,
+        #D4AF37 12%, 
+        #FFF4D0 30%, 
+        #FFFFFF 50%, 
+        #FAF0D4 70%, 
+        #C29B38 88%, 
+        #6B5428 100%
+    );
+    border-radius: 14px 4px 4px 14px;
+    box-shadow: 
+        8px 0 24px rgba(12, 43, 30, 0.25),
+        inset 2px 0 4px rgba(255, 255, 255, 0.9),
+        inset -3px 0 6px rgba(140, 115, 62, 0.5);
+    border-left: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+/* 3D Rolled Cylinder Spine (Right side for RTL) */
+.scroll-roll-spine-right {
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    right: 0;
+    width: 38px;
+    z-index: 35;
+    background: linear-gradient(to left, 
+        #8C733E 0%,
+        #D4AF37 12%, 
+        #FFF4D0 30%, 
+        #FFFFFF 50%, 
+        #FAF0D4 70%, 
+        #C29B38 88%, 
+        #6B5428 100%
+    );
+    border-radius: 4px 14px 14px 4px;
+    box-shadow: 
+        -8px 0 24px rgba(12, 43, 30, 0.25),
+        inset -2px 0 4px rgba(255, 255, 255, 0.9),
+        inset 3px 0 6px rgba(140, 115, 62, 0.5);
+    border-right: 1.5px solid rgba(212, 175, 55, 0.8);
+}
+
+/* Top & Bottom Cylinder Caps (Gold Crown Finials) */
+.scroll-roll-cap-top {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    height: 18px;
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FFF4D0 35%, #D4AF37 70%, #8C733E 100%);
+    border-radius: 50%;
+    border: 1.5px solid #FFE082;
+    box-shadow: 0 4px 8px rgba(12,43,30,0.25), 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+.scroll-roll-cap-bottom {
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    height: 18px;
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FFF4D0 35%, #D4AF37 70%, #8C733E 100%);
+    border-radius: 50%;
+    border: 1.5px solid #FFE082;
+    box-shadow: 0 -4px 8px rgba(12,43,30,0.25), 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+/* 3D Peeling Corner (Page Curl Flap) */
+.page-curl-corner {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 30;
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+    filter: drop-shadow(-10px 12px 16px rgba(12, 43, 30, 0.25));
+}
+
+.page-curl-corner:hover {
+    transform: scale(1.12) translate(-8px, 8px);
+    filter: drop-shadow(-14px 18px 22px rgba(12, 43, 30, 0.35));
+}
+
+.page-curl-backside-ltr {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(225deg, 
+        #FFFFFF 0%, 
+        #FFF8E7 25%, 
+        #F4E8C8 55%, 
+        #D9C38B 80%, 
+        #9E7D3B 100%
+    );
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    box-shadow: inset -4px 4px 12px rgba(140, 115, 62, 0.25);
+    border-bottom: 2.5px solid rgba(212, 175, 55, 0.9);
+    border-left: 2.5px solid rgba(212, 175, 55, 0.9);
+}
+
+.page-curl-backside-rtl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, 
+        #FFFFFF 0%, 
+        #FFF8E7 25%, 
+        #F4E8C8 55%, 
+        #D9C38B 80%, 
+        #9E7D3B 100%
+    );
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    box-shadow: inset 4px 4px 12px rgba(140, 115, 62, 0.25);
+    border-bottom: 2.5px solid rgba(212, 175, 55, 0.9);
+    border-right: 2.5px solid rgba(212, 175, 55, 0.9);
+}
+
+/* Page Curl Breathing Animation */
+@keyframes pageCurlPulse {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-6px, 6px) scale(1.04);
+    }
+}
+
+.animate-curl-pulse {
+    animation: pageCurlPulse 3.5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   AUTHENTIC 3D PARCHMENT SCROLL UNROLL & ROLL TRANSITIONS (ALPINE.JS READY)
+   ========================================================================== */
+
+/* Enter Active Stage */
+.parchment-unroll-enter-active {
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.75s ease-out,
+                clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.9s ease-out !important;
+    backface-visibility: hidden;
+    will-change: transform, clip-path, opacity;
+    z-index: 20 !important;
+}
+
+/* Leave Active Stage */
+.parchment-unroll-leave-active {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.65s ease-in,
+                clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.8s ease-in !important;
+    backface-visibility: hidden;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+}
+
+/* RTL: Unroll from RIGHT cylinder to LEFT */
+.parchment-unroll-enter-from-rtl {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) !important;
+    transform: perspective(1400px) rotateY(-25deg) translateX(80px) scale(0.96) !important;
+    transform-origin: right center !important;
+    opacity: 0.2 !important;
+    filter: brightness(0.6) saturate(0.8) !important;
+}
+
+.parchment-unroll-enter-to-rtl {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    transform: perspective(1400px) rotateY(0deg) translateX(0) scale(1) !important;
+    transform-origin: right center !important;
+    opacity: 1 !important;
+    filter: brightness(1) saturate(1.25) !important;
+}
+
+.parchment-unroll-leave-from-rtl {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    transform: scale(1) translateX(0) !important;
+    opacity: 1 !important;
+    filter: brightness(1) !important;
+}
+
+.parchment-unroll-leave-to-rtl {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) !important;
+    transform: scale(0.92) translateX(100px) !important;
+    opacity: 0 !important;
+    filter: brightness(0.3) blur(2px) !important;
+}
+
+/* LTR: Unroll from LEFT cylinder to RIGHT */
+.parchment-unroll-enter-from-ltr {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%) !important;
+    transform: perspective(1400px) rotateY(25deg) translateX(-80px) scale(0.96) !important;
+    transform-origin: left center !important;
+    opacity: 0.2 !important;
+    filter: brightness(0.6) saturate(0.8) !important;
+}
+
+.parchment-unroll-enter-to-ltr {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    transform: perspective(1400px) rotateY(0deg) translateX(0) scale(1) !important;
+    transform-origin: left center !important;
+    opacity: 1 !important;
+    filter: brightness(1) saturate(1.25) !important;
+}
+
+.parchment-unroll-leave-from-ltr {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    transform: scale(1) translateX(0) !important;
+    opacity: 1 !important;
+    filter: brightness(1) !important;
+}
+
+.parchment-unroll-leave-to-ltr {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%) !important;
+    transform: scale(0.92) translateX(-100px) !important;
+    opacity: 0 !important;
+    filter: brightness(0.3) blur(2px) !important;
+}
+
+/* Cylinder Spine Dynamic Spin Glow when turning page */
+@keyframes spineRollSpin {
+    0% {
+        filter: brightness(1);
+        transform: scaleX(1);
+    }
+    40% {
+        filter: brightness(1.9) drop-shadow(0 0 20px rgba(212, 175, 55, 1));
+        transform: scaleX(1.15);
+    }
+    100% {
+        filter: brightness(1);
+        transform: scaleX(1);
+    }
+}
+
+.spine-spinning {
+    animation: spineRollSpin 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Roll Unfurl Wave Light Beam */
+.unroll-light-beam-rtl {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(212, 175, 55, 0.3) 30%, 
+        rgba(255, 245, 210, 0.7) 60%, 
+        rgba(212, 175, 55, 0.4) 85%, 
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 25;
+    animation: waveSweepRTL 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.unroll-light-beam-ltr {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(212, 175, 55, 0.3) 30%, 
+        rgba(255, 245, 210, 0.7) 60%, 
+        rgba(212, 175, 55, 0.4) 85%, 
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 25;
+    animation: waveSweepLTR 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes waveSweepRTL {
+    0% {
+        right: 0;
+        opacity: 1;
+        transform: skewX(-14deg);
+    }
+    100% {
+        right: 100%;
+        opacity: 0;
+        transform: skewX(-14deg);
+    }
+}
+
+@keyframes waveSweepLTR {
+    0% {
+        left: 0;
+        opacity: 1;
+        transform: skewX(14deg);
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+        transform: skewX(14deg);
+    }
+}
+
