@@ -55,9 +55,17 @@ DEPLOY_START_TIME=$(date +%s)
 # ------------------------------------------------------------------------------
 log_info "Discovering environment and executable binaries..."
 
-# Detect PHP CLI (Handle Hostinger aliases like /usr/bin/php8.3 or /usr/local/bin/php)
+# Detect PHP CLI (Handle Hostinger CloudLinux /opt/alt/ paths and standard aliases)
 if [ -n "$PHP_BIN" ] && command -v "$PHP_BIN" >/dev/null 2>&1; then
     PHP_EXEC="$PHP_BIN"
+elif [ -x "/opt/alt/php84/usr/bin/php" ]; then
+    PHP_EXEC="/opt/alt/php84/usr/bin/php"
+elif [ -x "/opt/alt/php85/usr/bin/php" ]; then
+    PHP_EXEC="/opt/alt/php85/usr/bin/php"
+elif [ -x "/opt/alt/php83/usr/bin/php" ]; then
+    PHP_EXEC="/opt/alt/php83/usr/bin/php"
+elif command -v php8.4 >/dev/null 2>&1; then
+    PHP_EXEC="php8.4"
 elif command -v php8.3 >/dev/null 2>&1; then
     PHP_EXEC="php8.3"
 elif command -v php8.2 >/dev/null 2>&1; then
@@ -75,8 +83,10 @@ log_success "Using PHP: $PHP_EXEC (Version: $PHP_VERSION)"
 # Detect Composer
 if [ -n "$COMPOSER_BIN" ] && command -v "$COMPOSER_BIN" >/dev/null 2>&1; then
     COMPOSER_EXEC="$COMPOSER_BIN"
+elif [ -f "/usr/local/bin/composer" ]; then
+    COMPOSER_EXEC="$PHP_EXEC /usr/local/bin/composer"
 elif command -v composer >/dev/null 2>&1; then
-    COMPOSER_EXEC="composer"
+    COMPOSER_EXEC="$PHP_EXEC $(command -v composer)"
 elif [ -f "./composer.phar" ]; then
     COMPOSER_EXEC="$PHP_EXEC ./composer.phar"
 else
