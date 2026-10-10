@@ -28,9 +28,9 @@
                     </p>
                 </div>
 
-                <div class="text-start md:text-end space-y-1.5 p-6 rounded-2xl bg-amber-50/70 border-2 border-gold-400 shadow-sm">
+                <div class="text-start md:text-end space-y-2 p-6 rounded-2xl bg-amber-50/70 border-2 border-gold-400 shadow-sm">
                     <span class="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-700 block">Total Quotation ({{ $quotation->incoterm }})</span>
-                    <div class="text-3xl sm:text-4xl font-black text-gold-950 font-mono">
+                    <div class="text-3xl sm:text-4xl font-black text-slate-950 font-mono">
                         {{ $quotation->total_amount ? number_format($quotation->total_amount, 2) . ' ' . $quotation->currency : 'Pricing Pending' }}
                     </div>
                     @if($quotation->valid_until)
@@ -38,6 +38,14 @@
                             Valid until : <strong class="text-slate-950 font-black">{{ $quotation->valid_until->format('d M Y') }}</strong>
                         </span>
                     @endif
+                    <div class="pt-2">
+                        <a href="{{ route('quote.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'reference' => $quotation->reference_number, 'token' => $quotation->signed_token]) }}"
+                           target="_blank"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-amber-100 border-2 border-gold-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all hover:scale-105 cursor-pointer">
+                            <span>📄</span>
+                            <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل عرض السعر (PDF)' : 'Download Quotation PDF' }}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -150,6 +158,14 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Bouton 3 : Télécharger l'Offre Officielle en PDF -->
+                    <a href="{{ route('quote.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'reference' => $quotation->reference_number, 'token' => $quotation->signed_token]) }}"
+                       target="_blank"
+                       class="w-full py-5 px-8 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-gold-600 text-slate-950 font-black text-base sm:text-lg shadow-md transition-all hover:scale-[1.01] flex items-center justify-center gap-3 cursor-pointer">
+                        <span>📄</span>
+                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل وثيقة عرض السعر الرسمية (PDF)' : 'Download Official Quotation Document (PDF)' }}</span>
+                    </a>
 
                 </div>
             @else

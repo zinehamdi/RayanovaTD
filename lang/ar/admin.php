@@ -105,6 +105,7 @@ return [
     'back_to_pipeline' => '← العودة إلى قائمة الصفقات',
     'copy_magic_link' => 'نسخ الرابط السري للحريف',
     'build_contract' => '📜 صياغة عقد البيع الدولي',
+    'download_quotation_pdf' => '📄 تحميل عرض السعر PDF',
     'download_contract_pdf' => '📥 تحميل العقد بصيغة PDF',
     'download_invoice_pdf' => '📥 تحميل الفاتورة الأولية Pro-Forma PDF',
     'pricing_desk' => 'مكتب تسعير وتثمين التصدير',

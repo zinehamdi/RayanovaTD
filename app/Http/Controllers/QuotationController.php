@@ -226,4 +226,25 @@ class QuotationController extends Controller
             ? 'تم إرسال طلب التعديل بنجاح إلى مدير المبيعات وسيقوم بمراجعة التسعيرة فوراً.' 
             : 'Your amendment request has been submitted to our trade desk. An updated quote will be issued.');
     }
+
+    /**
+     * Téléchargement du PDF officiel de Cotation par le client / utilisateur
+     */
+    public function downloadPdf(string $reference, Request $request): \Illuminate\Http\Response
+    {
+        $quotation = QuotationRequest::with(['items.product.category', 'contract'])
+            ->where('reference_number', $reference)
+            ->firstOrFail();
+
+        // Sécurité : autoriser avec signed_token OU signature d'URL signée OU utilisateur connecté
+        if ($request->token !== $quotation->signed_token && !URL::hasValidSignature($request) && !auth()->check()) {
+            abort(403, 'Unauthorized or expired quotation link.');
+        }
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.quotation', compact('quotation'))
+            ->setPaper('a4', 'portrait')
+            ->setOption(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+
+        return $pdf->download("Rayanova_Quotation_{$quotation->reference_number}.pdf");
+    }
 }

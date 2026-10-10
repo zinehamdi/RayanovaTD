@@ -125,6 +125,11 @@
                                     </span>
                                 </td>
                                 <td class="py-5 px-6 text-right rtl:text-left space-x-2 rtl:space-x-reverse">
+                                    <a href="{{ route('admin.quotations.download_pdf', $quote->id) }}" target="_blank" title="Download Quotation PDF"
+                                       class="inline-block px-3 py-2 rounded-xl bg-white hover:bg-amber-100 border-2 border-gold-400 text-slate-950 font-black text-xs sm:text-sm shadow-sm transition-all">
+                                        📄 PDF
+                                    </a>
+
                                     <a href="{{ route('admin.quotations.show', $quote->id) }}"
                                        class="inline-block px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-slate-950 font-black text-xs sm:text-sm shadow-md transition-all">
                                         {{ __('admin.review_quote') }}

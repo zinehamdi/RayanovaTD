@@ -105,6 +105,7 @@ return [
     'back_to_pipeline' => '← Back to Pipeline',
     'copy_magic_link' => 'Copy Magic Link',
     'build_contract' => '📜 Build International Sales Contract',
+    'download_quotation_pdf' => '📄 Download Quotation PDF',
     'download_contract_pdf' => '📥 Download Contract PDF',
     'download_invoice_pdf' => '📥 Download Pro-Forma Invoice PDF',
     'pricing_desk' => 'Export Pricing Desk',

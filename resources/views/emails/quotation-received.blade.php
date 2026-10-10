@@ -13,7 +13,14 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding: 35px 40px; background: linear-gradient(135deg, #1B3B2B 0%, #102219 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.3); text-align: center;">
-                            <div style="font-size: 32px; line-height: 1;">🌿</div>
+                            @php
+                                $logoSrc = isset($message) && method_exists($message, 'embed') && file_exists(public_path('images/brand/logo-rayanova-td.jpg'))
+                                    ? $message->embed(public_path('images/brand/logo-rayanova-td.jpg'))
+                                    : (app()->environment('production') ? 'https://rayanovatd.com/images/brand/logo-rayanova-td.jpg' : asset('images/brand/logo-rayanova-td.jpg'));
+                            @endphp
+                            <div style="text-align: center; margin-bottom: 12px;">
+                                <img src="{{ $logoSrc }}" alt="Rayanova T.D" width="130" style="display: inline-block; width: 130px; max-width: 130px; height: auto; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.4); box-shadow: 0 8px 20px rgba(0,0,0,0.4);" />
+                            </div>
                             <h1 style="margin: 10px 0 2px; font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #FFFFFF;">RAYANOVA <span style="color: #D4AF37; font-size: 14px;">T.D</span></h1>
                             <p style="margin: 0; font-size: 11px; letter-spacing: 3px; color: #94A3B8; text-transform: uppercase;">Trading & Global Distribution • Tunisia</p>
                         </td>
@@ -65,9 +72,20 @@
                                 Our export desk is reviewing current market pricing, container loading schedules, and freight conditions for your requested destination. You will receive an official pro-forma quotation with our signed interactive review link shortly.
                             </p>
 
-                            <!-- Direct WhatsApp Assistance -->
-                            <div style="text-align: center; padding: 20px 0;">
-                                <a href="https://wa.me/21698000000" style="display: inline-block; padding: 12px 24px; background-color: #25D366; color: #FFFFFF; font-size: 13px; font-weight: bold; text-decoration: none; border-radius: 10px;">
+                            <!-- Direct Quotation PDF Download & WhatsApp Assistance -->
+                            <div style="text-align: center; padding: 15px 0 25px;">
+                                @php
+                                    $pdfDownloadUrl = route('quote.download_pdf', [
+                                        'locale' => 'en',
+                                        'reference' => $quotation->reference_number,
+                                        'token' => $quotation->signed_token,
+                                    ]);
+                                @endphp
+                                <a href="{{ $pdfDownloadUrl }}" target="_blank" style="display: inline-block; padding: 13px 28px; background: linear-gradient(135deg, #D4AF37 0%, #C29B38 100%); color: #0B0E0D; font-size: 13px; font-weight: bold; text-decoration: none; border-radius: 10px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35); margin-bottom: 10px;">
+                                    📄 Download Quotation Summary (PDF)
+                                </a>
+                                <br>
+                                <a href="https://wa.me/21698000000" style="display: inline-block; padding: 10px 22px; background-color: #25D366; color: #FFFFFF; font-size: 12px; font-weight: bold; text-decoration: none; border-radius: 10px;">
                                     💬 Chat with our Export Manager on WhatsApp
                                 </a>
                             </div>

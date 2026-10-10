@@ -13,7 +13,14 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding: 35px 40px; background: linear-gradient(135deg, #1B3B2B 0%, #102219 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.4); text-align: center;">
-                            <div style="font-size: 32px; line-height: 1;">🌿</div>
+                            @php
+                                $logoSrc = isset($message) && method_exists($message, 'embed') && file_exists(public_path('images/brand/logo-rayanova-td.jpg'))
+                                    ? $message->embed(public_path('images/brand/logo-rayanova-td.jpg'))
+                                    : (app()->environment('production') ? 'https://rayanovatd.com/images/brand/logo-rayanova-td.jpg' : asset('images/brand/logo-rayanova-td.jpg'));
+                            @endphp
+                            <div style="text-align: center; margin-bottom: 12px;">
+                                <img src="{{ $logoSrc }}" alt="Rayanova T.D" width="130" style="display: inline-block; width: 130px; max-width: 130px; height: auto; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.4); box-shadow: 0 8px 20px rgba(0,0,0,0.4);" />
+                            </div>
                             <h1 style="margin: 10px 0 2px; font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #FFFFFF;">RAYANOVA <span style="color: #D4AF37; font-size: 14px;">T.D</span></h1>
                             <p style="margin: 0; font-size: 11px; letter-spacing: 3px; color: #94A3B8; text-transform: uppercase;">Official Export Quotation & Pro-Forma Offer</p>
                         </td>
@@ -68,7 +75,19 @@
                                 <a href="{{ $magicLink }}" style="display: inline-block; padding: 16px 36px; background: linear-gradient(135deg, #D4AF37 0%, #C29B38 100%); color: #0B0E0D; font-size: 15px; font-weight: bold; text-decoration: none; border-radius: 12px; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);">
                                     👉 Open Quotation & Confirm Deal Online ➔
                                 </a>
-                                <p style="margin: 10px 0 0; font-size: 11px; color: #64748B;">
+                                <div style="margin-top: 14px;">
+                                    @php
+                                        $pdfDownloadUrl = route('quote.download_pdf', [
+                                            'locale' => 'en',
+                                            'reference' => $quotation->reference_number,
+                                            'token' => $quotation->signed_token,
+                                        ]);
+                                    @endphp
+                                    <a href="{{ $pdfDownloadUrl }}" target="_blank" style="display: inline-block; padding: 11px 24px; background-color: rgba(255,255,255,0.08); border: 1px solid rgba(212,175,55,0.4); color: #E2E8F0; font-size: 12px; font-weight: bold; text-decoration: none; border-radius: 10px;">
+                                        📄 Download Official Quotation (PDF)
+                                    </a>
+                                </div>
+                                <p style="margin: 12px 0 0; font-size: 11px; color: #64748B;">
                                     Secure encrypted link • No password required • Modify quantities or approve in 1 click
                                 </p>
                             </div>

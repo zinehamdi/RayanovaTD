@@ -106,4 +106,33 @@ class RfqFlowTest extends TestCase
             'message_body' => 'Please provide updated pricing for CIF Hamburg instead of Rotterdam.',
         ]);
     }
+
+    public function test_client_can_download_quotation_pdf_with_token(): void
+    {
+        $quotation = QuotationRequest::first();
+        $this->assertNotNull($quotation);
+
+        // Download with valid token
+        $response = $this->get('/en/quote/review/' . $quotation->reference_number . '/pdf?token=' . $quotation->signed_token);
+        $response->assertStatus(200);
+        $response->assertHeader('content-type', 'application/pdf');
+
+        // Download without token or unauthorized fails
+        $unauthorized = $this->get('/en/quote/review/' . $quotation->reference_number . '/pdf');
+        $unauthorized->assertStatus(403);
+    }
+
+    public function test_admin_can_download_quotation_pdf(): void
+    {
+        $admin = User::first();
+        $this->assertNotNull($admin);
+
+        $quotation = QuotationRequest::first();
+        $this->assertNotNull($quotation);
+
+        $response = $this->actingAs($admin)->get('/admin/quotations/' . $quotation->id . '/pdf');
+        $response->assertStatus(200);
+        $response->assertHeader('content-type', 'application/pdf');
+    }
 }
+

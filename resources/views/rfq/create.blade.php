@@ -5,14 +5,14 @@
             
             <!-- En-tête de Page (Haute Visibilité & Typographie Nette) -->
             <div class="text-center max-w-3xl mx-auto space-y-5">
-                <span class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-gold-100 to-amber-100 border-2 border-gold-500 text-sm sm:text-base font-black text-gold-950 uppercase tracking-widest shadow-md">
-                    <span class="w-3 h-3 rounded-full bg-gold-600 animate-pulse"></span>
+                <span class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-slate-900/90 backdrop-blur-md border-2 border-gold-400 text-sm sm:text-base font-black text-gold-300 uppercase tracking-widest shadow-2xl">
+                    <span class="w-3 h-3 rounded-full bg-gold-400 animate-pulse"></span>
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'بوابة التصدير والصفقات الدولية 2026' : 'International B2B Agro-Export & Quotation Engine' }}
                 </span>
-                <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-black text-slate-950 tracking-tight leading-tight">
+                <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-xl">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'طلب تسعيرة تصدير رسمية (RFQ)' : 'Request for Quotation (RFQ)' }}
                 </h1>
-                <p class="text-base sm:text-lg text-slate-800 font-bold leading-relaxed max-w-2xl mx-auto">
+                <p class="text-base sm:text-lg text-slate-200 font-semibold leading-relaxed max-w-2xl mx-auto drop-shadow-md">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' 
                         ? 'املأ البيانات التجارية لشركتك، وسيقوم مكتب التصدير بإعداد فاتورة تقديرية (Pro-Forma Invoice) مفصلة بأسعار البورصة ومواصفات الشحن.'
                         : 'Submit your commercial company details and trade terms. Our export desk will review vessel schedules and issue an official pro-forma invoice.' }}
@@ -33,7 +33,7 @@
 
                 <!-- Section 1 : Type de Requête -->
                 <div class="space-y-5">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-gold-950 flex items-center gap-2.5">
+                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
                         <span class="w-3 h-3 rounded-full bg-gold-600"></span>
                         <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '1. طبيعة الطلب والتوريد :' : '1. Request Type :' }}</span>
                     </label>
@@ -64,7 +64,7 @@
 
                 <!-- Section 2 : Données de l'Importateur & Entreprise -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-gold-950 flex items-center gap-2.5">
+                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
                         <span class="w-3 h-3 rounded-full bg-gold-600"></span>
                         <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '2. بيانات الشركة المستوردة :' : '2. Importer & Company Credentials :' }}</span>
                     </label>
@@ -99,7 +99,7 @@
 
                 <!-- Section 3 : Modalités de Livraison & Incoterms 2020 -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-gold-950 flex items-center gap-2.5">
+                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
                         <span class="w-3 h-3 rounded-full bg-gold-600"></span>
                         <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '3. شروط الشحن والتسليم الدولي (Incoterms 2020) :' : '3. Shipping Terms & Incoterms 2020 :' }}</span>
                     </label>
@@ -132,11 +132,11 @@
                 <!-- Section 4 : Récapitulatif des Produits du Panier -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
                     <div class="flex items-center justify-between">
-                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-gold-950 flex items-center gap-2.5">
+                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
                             <span class="w-3 h-3 rounded-full bg-gold-600"></span>
                             <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '4. المنتجات والكميات المحددة :' : '4. Selected Products & Packaging :' }}</span>
                         </label>
-                        <a href="{{ LaravelLocalization::localizeUrl('/#products') }}" class="text-sm sm:text-base font-black text-gold-800 hover:text-gold-950 underline flex items-center gap-1.5">
+                        <a href="{{ LaravelLocalization::localizeUrl('/#products') }}" class="text-sm sm:text-base font-black text-amber-800 hover:text-amber-950 underline flex items-center gap-1.5">
                             <span>+ {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'إضافة منتجات أخرى من الكتالوج' : 'Add more items from catalog' }}</span>
                         </a>
                     </div>
@@ -156,7 +156,7 @@
                                         <div>
                                             <strong class="text-slate-950 font-black text-base sm:text-lg block">{{ $item['product_title'] }}</strong>
                                             <div class="text-slate-700 text-sm font-bold mt-1 flex items-center gap-2.5">
-                                                <span class="px-2.5 py-1 rounded-lg bg-gold-100 border border-gold-400 text-gold-950 font-black uppercase text-xs">{{ ucwords(str_replace('_', ' ', $item['packaging_type'])) }}</span>
+                                                <span class="px-2.5 py-1 rounded-lg bg-amber-100 border border-amber-400 text-amber-950 font-black uppercase text-xs">{{ ucwords(str_replace('_', ' ', $item['packaging_type'])) }}</span>
                                                 <span>• {{ $item['size'] }}</span>
                                                 @if(!empty($item['is_private_label']))
                                                     <span class="text-emerald-700 font-black">(Private Label OEM)</span>
@@ -164,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-gold-950 font-mono font-black text-lg sm:text-xl px-5 py-2.5 rounded-2xl bg-white border-2 border-gold-400 shadow-sm">
+                                    <div class="text-slate-950 font-mono font-black text-lg sm:text-xl px-5 py-2.5 rounded-2xl bg-white border-2 border-gold-400 shadow-sm">
                                         {{ number_format($item['quantity'], 0) }} {{ $item['unit'] }}
                                     </div>
                                 </div>

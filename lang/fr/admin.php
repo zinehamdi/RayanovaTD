@@ -105,6 +105,7 @@ return [
     'back_to_pipeline' => '← Retour au Pipeline',
     'copy_magic_link' => 'Copier le Magic Link Client',
     'build_contract' => '📜 Générer le Contrat de Vente International',
+    'download_quotation_pdf' => '📄 Télécharger le Devis PDF',
     'download_contract_pdf' => '📥 Télécharger le Contrat PDF',
     'download_invoice_pdf' => '📥 Télécharger la Facture Pro-Forma PDF',
     'pricing_desk' => 'Bureau de Tarification Export',

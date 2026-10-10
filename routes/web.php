@@ -24,6 +24,7 @@ Route::group([
 
     // Magic Link Interactif Client (Consultation, Négociation & Confirmation en 1 clic)
     Route::get('/quote/review/{reference}', [QuotationController::class, 'review'])->name('quote.review');
+    Route::get('/quote/review/{reference}/pdf', [QuotationController::class, 'downloadPdf'])->name('quote.download_pdf');
     Route::post('/quote/review/{reference}/confirm', [QuotationController::class, 'confirm'])->name('quote.confirm');
     Route::post('/quote/review/{reference}/modify', [QuotationController::class, 'modify'])->name('quote.modify');
 });
@@ -69,6 +70,7 @@ Route::prefix('admin')->group(function () {
         // Deals & Quotation Pricing Desk
         Route::get('/quotations', [QuotationManagementController::class, 'index'])->name('admin.quotations.index');
         Route::get('/quotations/{id}', [QuotationManagementController::class, 'show'])->name('admin.quotations.show');
+        Route::get('/quotations/{id}/pdf', [QuotationManagementController::class, 'downloadPdf'])->name('admin.quotations.download_pdf');
         Route::post('/quotations/{id}/price', [QuotationManagementController::class, 'price'])->name('admin.quotations.price');
         Route::delete('/quotations/{id}', [QuotationManagementController::class, 'destroy'])->name('admin.quotations.destroy');
 

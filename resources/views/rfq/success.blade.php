@@ -55,6 +55,12 @@
 
                 <!-- Actions Rapides -->
                 <div class="flex flex-wrap items-center justify-center gap-4 pt-6">
+                    <a href="{{ route('quote.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'reference' => $quotation->reference_number, 'token' => $quotation->signed_token]) }}"
+                       target="_blank"
+                       class="px-8 py-4 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-gold-600 text-slate-950 font-black text-base shadow-xl shadow-gold-500/25 transition-all flex items-center gap-2.5 hover:scale-105 cursor-pointer">
+                        <span>📥</span>
+                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل ملخص الطلب (PDF)' : 'Download Quotation Summary (PDF)' }}</span>
+                    </a>
                     <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 border-2 border-slate-400 text-slate-950 font-black text-base shadow-sm hover:border-gold-500 transition-all">
                         ← {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'العودة للصفحة الرئيسية' : 'Return to Homepage' }}
                     </a>

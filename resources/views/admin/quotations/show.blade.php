@@ -38,6 +38,13 @@
                 @php
                     $magicUrl = route('quote.review', ['locale' => app()->getLocale(), 'reference' => $quotation->reference_number]) . '?token=' . $quotation->signed_token;
                 @endphp
+                <a href="{{ route('admin.quotations.download_pdf', $quotation->id) }}"
+                   target="_blank"
+                   class="px-4 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-gold-600 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer">
+                    <span class="text-base">📄</span>
+                    <span>{{ __('admin.download_quotation_pdf') }}</span>
+                </a>
+
                 <button type="button" onclick="navigator.clipboard.writeText('{{ $magicUrl }}'); alert('Client Magic Link copied to clipboard!');"
                         class="px-4 py-3 rounded-2xl bg-white hover:bg-amber-50/60 border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-800 shadow-sm transition-all flex items-center gap-2 cursor-pointer">
                     <span class="text-base">🔗</span>
