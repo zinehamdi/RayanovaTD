@@ -483,12 +483,14 @@
                     <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
                         {{ $isRtl ? '3. مكتب التصدير وطلب عروض الأسعار:' : ($lang === 'fr' ? '3. Contact Desk & Demandes de Cotation :' : '3. Export Desk & Direct Quotations:') }}
                     </strong>
-                    <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0;">
-                        <strong>RAYANOVA T.D SARL</strong> — Agro-Export Division<br>
-                        Republic of Tunisia • Gateways: Port of Rades & Port of Sfax<br>
-                        <strong>WhatsApp Trade Desk:</strong> +216 54 817 999<br>
-                        <strong>Email:</strong> export@rayanovatd.com<br>
-                        <strong>Web:</strong> www.rayanovatd.com
+                    <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0; line-height: 1.4;">
+                        <strong>RAYANOVA TRADING & DISTRIBUTION SARL</strong><br>
+                        Rue Omar Kaddah, Imm. Montplaisir 2ème étage B25, Av. Khaireddine Pacha, 1073 Tunis<br>
+                        <strong>RNE (Identifiant Unique) :</strong> 1975095B &nbsp;|&nbsp; <strong>Registre N° :</strong> B50148372026<br>
+                        <strong>Extrait RNE :</strong> ER20260645525 &nbsp;|&nbsp; <strong>Capital :</strong> 20 000 TND<br>
+                        <strong>Gérance :</strong> M. Khaled Ben Ammar &nbsp;|&nbsp; <strong>Code Activité :</strong> 51700<br>
+                        <strong>Export Gateways :</strong> Port of Rades & Sfax &nbsp;|&nbsp; <strong>Email :</strong> export@rayanovatd.com<br>
+                        <strong>Web :</strong> www.rayanovatd.com
                     </p>
 
                     <div style="background-color: #f1f5f9; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 8px; color: #0f291e;">

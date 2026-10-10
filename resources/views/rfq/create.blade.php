@@ -33,30 +33,44 @@
 
                 <!-- Section 1 : Type de Requête -->
                 <div class="space-y-5">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
-                        <span class="w-3 h-3 rounded-full bg-gold-600"></span>
-                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '1. طبيعة الطلب والتوريد :' : '1. Request Type :' }}</span>
-                    </label>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center shrink-0 shadow-sm">01</span>
+                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950">
+                            {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'طبيعة الطلب والتوريد :' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Nature de la Requête :' : 'Request Type :') }}
+                        </label>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/40 border-2 border-slate-400 hover:border-gold-600 hover:bg-white cursor-pointer transition-all shadow-sm">
-                            <input type="radio" name="request_type" value="quote" checked class="w-6 h-6 text-gold-600 focus:ring-gold-500">
+                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/60 border-2 border-slate-300 hover:border-amber-600 hover:bg-white cursor-pointer transition-all shadow-sm">
+                            <input type="radio" name="request_type" value="quote" checked class="w-6 h-6 text-amber-600 focus:ring-amber-500">
                             <div>
-                                <span class="block text-base sm:text-lg font-black text-slate-950">Commercial Quote</span>
-                                <span class="block text-sm text-slate-700 font-bold mt-1">Container FCL / Sea Bulk</span>
+                                <span class="block text-base sm:text-lg font-black text-slate-950">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'عرض أسعار تجاري' : 'Commercial Quote' }}
+                                </span>
+                                <span class="block text-sm text-slate-700 font-bold mt-1">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شحنات حاويات FCL / بحري صب' : 'Container FCL / Sea Bulk' }}
+                                </span>
                             </div>
                         </label>
-                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/40 border-2 border-slate-400 hover:border-gold-600 hover:bg-white cursor-pointer transition-all shadow-sm">
-                            <input type="radio" name="request_type" value="sample_request" class="w-6 h-6 text-gold-600 focus:ring-gold-500">
+                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/60 border-2 border-slate-300 hover:border-amber-600 hover:bg-white cursor-pointer transition-all shadow-sm">
+                            <input type="radio" name="request_type" value="sample_request" class="w-6 h-6 text-amber-600 focus:ring-amber-500">
                             <div>
-                                <span class="block text-base sm:text-lg font-black text-slate-950">Sample Box (DHL)</span>
-                                <span class="block text-sm text-slate-700 font-bold mt-1">Lab testing & tasting kit</span>
+                                <span class="block text-base sm:text-lg font-black text-slate-950">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'عينة تجريبية (DHL)' : 'Sample Box (DHL)' }}
+                                </span>
+                                <span class="block text-sm text-slate-700 font-bold mt-1">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'طرد مخبري وتحليلي للتذوق' : 'Lab testing & tasting kit' }}
+                                </span>
                             </div>
                         </label>
-                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/40 border-2 border-slate-400 hover:border-gold-600 hover:bg-white cursor-pointer transition-all shadow-sm">
-                            <input type="radio" name="request_type" value="private_label" class="w-6 h-6 text-gold-600 focus:ring-gold-500">
+                        <label class="relative flex items-center gap-4 p-5 sm:p-6 rounded-2xl bg-amber-50/60 border-2 border-slate-300 hover:border-amber-600 hover:bg-white cursor-pointer transition-all shadow-sm">
+                            <input type="radio" name="request_type" value="private_label" class="w-6 h-6 text-amber-600 focus:ring-amber-500">
                             <div>
-                                <span class="block text-base sm:text-lg font-black text-slate-950">Private Label (OEM)</span>
-                                <span class="block text-sm text-slate-700 font-bold mt-1">Custom buyer packaging</span>
+                                <span class="block text-base sm:text-lg font-black text-slate-950">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'علامة خاصة (OEM)' : 'Private Label (OEM)' }}
+                                </span>
+                                <span class="block text-sm text-slate-700 font-bold mt-1">
+                                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تغليف وتعليب مخصص للمشتري' : 'Custom buyer packaging' }}
+                                </span>
                             </div>
                         </label>
                     </div>
@@ -64,50 +78,80 @@
 
                 <!-- Section 2 : Données de l'Importateur & Entreprise -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
-                        <span class="w-3 h-3 rounded-full bg-gold-600"></span>
-                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '2. بيانات الشركة المستوردة :' : '2. Importer & Company Credentials :' }}</span>
-                    </label>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center shrink-0 shadow-sm">02</span>
+                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950">
+                            {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'بيانات الشركة المستوردة :' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Données de la Société Importatrice :' : 'Importer & Company Credentials :') }}
+                        </label>
+                    </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Company Legal Name *</label>
-                            <input type="text" name="company_name" value="{{ old('company_name') }}" required placeholder="e.g. Nordic Gourmet Import GmbH" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'الاسم القانوني للشركة المستوردة *' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Raison Sociale de l\'Entreprise *' : 'Company Legal Name *') }}
+                            </label>
+                            <input type="text" name="company_name" value="{{ old('company_name') }}" required 
+                                   placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مثال: شركة الخليج للأغذية أو Nordic Gourmet Import GmbH' : 'e.g. Nordic Gourmet Import GmbH' }}" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Contact Person (Full Name) *</label>
-                            <input type="text" name="contact_name" value="{{ old('contact_name') }}" required placeholder="e.g. Hans Gruber (Procurement Director)" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'اسم مسؤول المشتريات / جهة الاتصال *' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Nom du Responsable Achats *' : 'Contact Person (Full Name) *') }}
+                            </label>
+                            <input type="text" name="contact_name" value="{{ old('contact_name') }}" required 
+                                   placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مثال: أحمد المنصوري (مدير التوريد) أو Hans Gruber' : 'e.g. Hans Gruber (Procurement Director)' }}" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Corporate Email Address *</label>
-                            <input type="email" name="email" value="{{ old('email') }}" required placeholder="purchasing@company.com" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'البريد الإلكتروني المهني للشركة *' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Adresse Email Professionnelle *' : 'Corporate Email Address *') }}
+                            </label>
+                            <input type="email" name="email" value="{{ old('email') }}" required 
+                                   placeholder="purchasing@company.com" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">WhatsApp / Phone Number</label>
-                            <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="+49 170 9988776" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'رقم الهاتف أو واتساب للتواصل السريع' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Numéro de Téléphone / WhatsApp' : 'WhatsApp / Phone Number') }}
+                            </label>
+                            <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" 
+                                   placeholder="+971 50 123 4567 / +49 170 9988776" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Country of Importation *</label>
-                            <input type="text" name="country" value="{{ old('country') }}" required placeholder="e.g. Germany, France, United States, UAE" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'دولة الاستيراد / الوجهة *' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Pays de Destination / Importation *' : 'Country of Importation *') }}
+                            </label>
+                            <input type="text" name="country" value="{{ old('country') }}" required 
+                                   placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مثال: الإمارات، السعودية، ألمانيا، فرنسا، كندا' : 'e.g. Germany, France, United States, UAE, Saudi Arabia' }}" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Tax ID / VAT Registration Number</label>
-                            <input type="text" name="tax_number" value="{{ old('tax_number') }}" placeholder="e.g. DE-123456789" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'المعرف الجبائي أو السجل التجاري للشركة' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Numéro d\'Identification Fiscale / TVA' : 'Tax ID / VAT Registration Number') }}
+                            </label>
+                            <input type="text" name="tax_number" value="{{ old('tax_number') }}" 
+                                   placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مثال: الرقم الضريبي أو السجل التجاري' : 'e.g. DE-123456789 or Tax Registration ID' }}" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                     </div>
                 </div>
 
                 <!-- Section 3 : Modalités de Livraison & Incoterms 2020 -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
-                    <label class="block text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
-                        <span class="w-3 h-3 rounded-full bg-gold-600"></span>
-                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '3. شروط الشحن والتسليم الدولي (Incoterms 2020) :' : '3. Shipping Terms & Incoterms 2020 :' }}</span>
-                    </label>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center shrink-0 shadow-sm">03</span>
+                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950">
+                            {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شروط الشحن والتسليم الدولي (Incoterms 2020) :' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Conditions d\'Expédition (Incoterms 2020) :' : 'Shipping Terms & Incoterms 2020 :') }}
+                        </label>
+                    </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Desired Incoterm *</label>
-                            <select name="incoterm" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm cursor-pointer">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شرط التسليم المطلوب (Incoterm) *' : 'Desired Incoterm *' }}
+                            </label>
+                            <select name="incoterm" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm cursor-pointer">
                                 <option value="FOB">FOB (Free on Board — Port of Rades/Sfax)</option>
                                 <option value="CIF" selected>CIF (Cost, Insurance & Freight to your port)</option>
                                 <option value="CFR">CFR (Cost & Freight)</option>
@@ -115,15 +159,21 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Destination Port / Airport *</label>
-                            <input type="text" name="destination_port" value="{{ old('destination_port') }}" required placeholder="e.g. Port of Hamburg, Port of Marseille, Jebel Ali" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm">
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'ميناء أو مطار الوصول المقصود *' : 'Destination Port / Airport *' }}
+                            </label>
+                            <input type="text" name="destination_port" value="{{ old('destination_port') }}" required 
+                                   placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مثال: ميناء جبل علي، ميناء هامبورغ، ميناء مرسيليا' : 'e.g. Port of Hamburg, Port of Marseille, Jebel Ali' }}" 
+                                   class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Logistics Mode *</label>
-                            <select name="shipping_method" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm cursor-pointer">
-                                <option value="sea_fcl" selected>Sea Freight 20ft / 40ft (FCL)</option>
-                                <option value="sea_lcl">Sea Freight Consolidated (LCL)</option>
-                                <option value="air">Air Cargo Express</option>
+                            <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'طريقة الشحن واللوجستيات *' : 'Logistics Mode *' }}
+                            </label>
+                            <select name="shipping_method" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-300 text-slate-950 font-bold text-base sm:text-lg focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm cursor-pointer">
+                                <option value="sea_fcl" selected>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شحن بحري حاويات كاملة (FCL 20ft / 40ft)' : 'Sea Freight 20ft / 40ft (FCL)' }}</option>
+                                <option value="sea_lcl">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شحن بحري مجمع جزئي (LCL)' : 'Sea Freight Consolidated (LCL)' }}</option>
+                                <option value="air">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شحن جوي سريع (Air Cargo)' : 'Air Cargo Express' }}</option>
                             </select>
                         </div>
                     </div>
@@ -132,10 +182,12 @@
                 <!-- Section 4 : Récapitulatif des Produits du Panier -->
                 <div class="space-y-6 pt-10 border-t-2 border-slate-200">
                     <div class="flex items-center justify-between">
-                        <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950 flex items-center gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-gold-600"></span>
-                            <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? '4. المنتجات والكميات المحددة :' : '4. Selected Products & Packaging :' }}</span>
-                        </label>
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center shrink-0 shadow-sm">04</span>
+                            <label class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-950">
+                                {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'المنتجات والكميات المحددة :' : 'Selected Products & Packaging :' }}
+                            </label>
+                        </div>
                         <a href="{{ LaravelLocalization::localizeUrl('/#products') }}" class="text-sm sm:text-base font-black text-amber-800 hover:text-amber-950 underline flex items-center gap-1.5">
                             <span>+ {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'إضافة منتجات أخرى من الكتالوج' : 'Add more items from catalog' }}</span>
                         </a>
@@ -180,16 +232,20 @@
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Select Primary Commodity</label>
-                                    <select name="single_product_id" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none shadow-sm cursor-pointer">
+                                    <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                        {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'حدد المنتج الرئيسي المطلوب *' : 'Select Primary Commodity *' }}
+                                    </label>
+                                    <select name="single_product_id" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none shadow-sm cursor-pointer">
                                         @foreach($products as $p)
                                             <option value="{{ $p->id }}">{{ $p->localized_title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">Estimated Quantity</label>
-                                    <input type="number" name="single_quantity" value="1000" min="1" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none shadow-sm">
+                                    <label class="block text-sm sm:text-base font-black text-slate-950 mb-2.5">
+                                        {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'الكمية التقديرية *' : 'Estimated Quantity *' }}
+                                    </label>
+                                    <input type="number" name="single_quantity" value="1000" min="1" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none shadow-sm">
                                 </div>
                             </div>
                         </div>
@@ -201,7 +257,7 @@
                     <label class="block text-base sm:text-lg font-black text-slate-950">
                         {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'ملاحظات أو متطلبات خاصة (تحاليل مخبرية محددة، مهلة التسليم، شهادات إضافية) :' : 'Special Requirements & Notes (Specific COI parameters, target dates, certifications) :' }}
                     </label>
-                    <textarea name="client_notes" rows="4" placeholder="Mention any specific requirements (e.g. customized labels, specific acidity limit, delivery schedule)..." class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-gold-600 focus:ring-4 focus:ring-gold-400/20 focus:outline-none transition-all shadow-sm"></textarea>
+                    <textarea name="client_notes" rows="4" placeholder="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'أضف أي متطلبات خاصة (مثل: نسبة حموضة محددة، ملصقات مخصصة، جدول شحن مجدول)...' : 'Mention any specific requirements (e.g. customized labels, specific acidity limit, delivery schedule)...' }}" class="w-full px-5 py-4 rounded-2xl bg-white border-2 border-slate-400 text-slate-950 font-bold text-base sm:text-lg placeholder-slate-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-400/20 focus:outline-none transition-all shadow-sm"></textarea>
                 </div>
 
                 <!-- Bouton de Soumission Principal (Haute Visibilité & Style Vibrant) -->

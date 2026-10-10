@@ -90,6 +90,11 @@
                 <span class="hidden sm:inline text-rn-text-3 font-normal">Incoterms 2020: FOB, CIF, CFR, EXW</span>
             </div>
             <div class="flex items-center gap-4">
+                <a href="{{ route('catalog.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'lang' => LaravelLocalization::getCurrentLocale()]) }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 transition-colors font-semibold">
+                    <span>📄</span>
+                    <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'كتالوج المنتجات PDF' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Catalogue B2B PDF' : 'B2B Catalog PDF') }}</span>
+                </a>
+                <span class="text-rn-line/20">•</span>
                 <a href="https://wa.me/{{ $whatsappDigits }}?text={{ urlencode('Hello Rayanova Export Desk, I would like to inquire about quotations.') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-rn-text-2 hover:text-white transition-colors font-medium">
                     <svg class="w-3.5 h-3.5 text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
                     <span>WhatsApp Export Desk</span>

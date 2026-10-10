@@ -158,7 +158,7 @@ class QuotationManagementController extends Controller
     /**
      * Génération et téléchargement du PDF officiel de Cotation Pro-Forma (Admin)
      */
-    public function downloadPdf(int $id): \Illuminate\Http\Response
+    public function downloadPdf(int $id, Request $request): \Illuminate\Http\Response
     {
         $quotation = QuotationRequest::with(['items.product.category', 'messages', 'contract'])
             ->findOrFail($id);
@@ -167,7 +167,13 @@ class QuotationManagementController extends Controller
             ->setPaper('a4', 'portrait')
             ->setOption(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
 
-        return $pdf->download("Rayanova_Quotation_{$quotation->reference_number}.pdf");
+        $fileName = "Rayanova_Quotation_{$quotation->reference_number}.pdf";
+
+        if ($request->has('download')) {
+            return $pdf->download($fileName);
+        }
+
+        return $pdf->stream($fileName);
     }
 }
 

@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\QuotationManagementController;
+use App\Http\Controllers\Admin\ContractManagementController;
+use App\Http\Controllers\Admin\HeroSlideManagementController;
+use App\Http\Controllers\Admin\ProductManagementController;
+use App\Http\Controllers\Admin\CompanyHeroManagementController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -27,6 +34,8 @@ Route::group([
     Route::get('/quote/review/{reference}/pdf', [QuotationController::class, 'downloadPdf'])->name('quote.download_pdf');
     Route::post('/quote/review/{reference}/confirm', [QuotationController::class, 'confirm'])->name('quote.confirm');
     Route::post('/quote/review/{reference}/modify', [QuotationController::class, 'modify'])->name('quote.modify');
+    // Téléchargement Public du Catalogue Export B2B
+    Route::get('/catalog/pdf', [ProductManagementController::class, 'exportCataloguePdf'])->name('catalog.download_pdf');
 });
 
 /*
@@ -34,13 +43,6 @@ Route::group([
 | Rayanova T.D — Export Command Center (Back-Office Administration)
 |--------------------------------------------------------------------------
 */
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\QuotationManagementController;
-use App\Http\Controllers\Admin\ContractManagementController;
-use App\Http\Controllers\Admin\HeroSlideManagementController;
-use App\Http\Controllers\Admin\ProductManagementController;
-use App\Http\Controllers\Admin\CompanyHeroManagementController;
 
 // Admin Auth & Locale
 Route::prefix('admin')->group(function () {

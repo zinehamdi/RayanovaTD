@@ -22,7 +22,7 @@ class ProductManagementController extends Controller
         ini_set('memory_limit', '512M');
         ini_set('max_execution_time', 120);
 
-        $lang = $request->input('lang', app()->getLocale());
+        $lang = $request->query('lang', app()->getLocale() ?: 'en');
         if (!in_array($lang, ['en', 'fr', 'ar'])) {
             $lang = 'en';
         }
@@ -38,27 +38,39 @@ class ProductManagementController extends Controller
         $candidateLogo = public_path('images/brand/logo-rayanova-td.jpg');
         if (file_exists($candidateLogo)) {
             $logoPath = $candidateLogo;
+        } elseif (file_exists(public_path('images/brand/logo.png'))) {
+            $logoPath = public_path('images/brand/logo.png');
         }
 
         // Map product image direct absolute paths
         $productImagePaths = [];
         foreach ($categories as $category) {
             foreach ($category->products as $prod) {
-                $imgPath = public_path(ltrim($prod->featured_image, '/'));
-                if (!file_exists($imgPath)) {
-                    $catSlug = strtolower($category->slug ?? '');
-                    if (str_contains($catSlug, 'date') || str_contains(strtolower($prod->slug), 'date')) {
-                        $imgPath = public_path('images/products/deglet_nour_box.jpg');
-                    } elseif (str_contains(strtolower($prod->slug), 'tomato') || str_contains(strtolower($prod->slug), 'harissa')) {
-                        $imgPath = public_path('images/products/sundried_tomatoes_jar.jpg');
-                    } elseif (str_contains(strtolower($prod->slug), 'tuna') || str_contains(strtolower($prod->slug), 'thon')) {
-                        $imgPath = public_path('images/products/canned_tuna_can.jpg');
-                    } else {
-                        $imgPath = public_path('images/products/olive_oil_bottle.jpg');
+                $imgPath = null;
+                if (!empty($prod->featured_image)) {
+                    $cleaned = ltrim($prod->featured_image, '/');
+                    if (file_exists(public_path($cleaned))) {
+                        $imgPath = public_path($cleaned);
                     }
                 }
 
-                if (file_exists($imgPath)) {
+                if (!$imgPath || !file_exists($imgPath)) {
+                    $catSlug = strtolower($category->slug ?? '');
+                    if (str_contains($catSlug, 'date') || str_contains(strtolower($prod->slug), 'date')) {
+                        $fallback = public_path('images/products/deglet_nour_box.jpg');
+                    } elseif (str_contains(strtolower($prod->slug), 'tomato') || str_contains(strtolower($prod->slug), 'harissa')) {
+                        $fallback = public_path('images/products/sundried_tomatoes_jar.jpg');
+                    } elseif (str_contains(strtolower($prod->slug), 'tuna') || str_contains(strtolower($prod->slug), 'thon')) {
+                        $fallback = public_path('images/products/canned_tuna_can.jpg');
+                    } else {
+                        $fallback = public_path('images/products/olive_oil_bottle.jpg');
+                    }
+                    if (file_exists($fallback)) {
+                        $imgPath = $fallback;
+                    }
+                }
+
+                if ($imgPath && file_exists($imgPath)) {
                     $productImagePaths[$prod->id] = $imgPath;
                 }
             }
@@ -80,7 +92,11 @@ class ProductManagementController extends Controller
 
         $filename = sprintf('Rayanova_TD_Product_Export_Catalogue_2026_%s.pdf', strtoupper($lang));
 
-        return $pdf->download($filename);
+        if ($request->has('download') || $request->boolean('download')) {
+            return $pdf->download($filename);
+        }
+
+        return $pdf->stream($filename);
     }
     /**
      * Liste des produits du catalogue avec filtrage et recherche

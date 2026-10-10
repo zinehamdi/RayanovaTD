@@ -7,22 +7,31 @@
 
     <!-- 2. Products Showroom Scene (§14 & §19 - moved up directly after hero) -->
     <section id="products" class="rn-scene rn-scene--showroom" data-scene style="--scene-z: 20;">
-        <div class="rn-scene__inner space-y-3 lg:space-y-3.5" x-data="{ activeId: {{ $products[0]->id ?? 1 }} }" @showroom-select.window="activeId = $event.detail.id">
+        <div class="rn-scene__inner space-y-2 lg:space-y-2.5" x-data="{ activeId: {{ $products[0]->id ?? 1 }} }" @showroom-select.window="activeId = $event.detail.id">
             
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-1.5 lg:space-y-2">
-                <span class="px-3.5 py-0.5 rounded-full rn-glass-light border border-rn-line/12 text-[11px] font-bold text-rn-gold uppercase tracking-widest font-mono shadow-sm inline-block">
-                    {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'كتالوج التصدير الدولي 2026' : 'Export Catalog & Interactive Packaging' }}
-                </span>
-                <h2 class="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-rn-text-1 tracking-tight leading-tight">
+            <div class="text-center max-w-3xl mx-auto space-y-1">
+                <div class="flex items-center justify-center gap-2.5 flex-wrap">
+                    <span class="px-3 py-0.5 rounded-full rn-glass-light border border-rn-line/12 text-[10px] font-bold text-rn-gold uppercase tracking-widest font-mono shadow-sm inline-block">
+                        {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'كتالوج التصدير الدولي 2026' : 'Export Catalog & Interactive Packaging' }}
+                    </span>
+                    <a href="{{ route('catalog.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'lang' => LaravelLocalization::getCurrentLocale()]) }}"
+                       target="_blank"
+                       title="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل كتالوج المنتجات الرسمي بصيغة PDF' : 'Download Official B2B Export Catalog PDF' }}"
+                       class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 border border-amber-500/40 transition-all hover:scale-105 shadow-sm cursor-pointer">
+                        <span>📄</span>
+                        <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل الكتالوج (PDF)' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Télécharger Catalogue (PDF)' : 'Download B2B Catalog (PDF)') }}</span>
+                    </a>
+                </div>
+                <h2 class="font-display text-lg sm:text-xl lg:text-2xl font-bold text-rn-text-1 tracking-tight leading-tight">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'حدد التكوين وسعة التعليب المناسبة لصفقتك' : 'Configure Sizes & Packaging for Your Order' }}
                 </h2>
-                <p class="text-xs text-rn-text-2 font-normal leading-relaxed max-w-2xl mx-auto line-clamp-2">
+                <p class="text-[11px] text-rn-text-2 font-normal leading-normal max-w-2xl mx-auto line-clamp-1">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' 
-                        ? 'اختر الأحجام والعبوات المناسبة لصفقتك، سواء كنت تستورد زيتاً معبأً أو شحنات صب (Flexitank) بحرية، مع تقدير فوري للوجستيات الحاوية.' 
+                        ? 'اختر الأحجام والعبوات المناسبة لصفقتك مع تقدير فوري للوجستيات الحاوية والشهادات المخبرية.' 
                         : (LaravelLocalization::getCurrentLocale() === 'fr'
                             ? 'Personnalisez les capacités de conteneurs, formats de conditionnement et volumes avec estimation logistique instantanée.'
-                            : 'Customize container capacities, packaging styles, and volumes with instant container logistics estimates generated automatically.') }}
+                            : 'Customize container capacities, packaging styles, and volumes with instant container logistics estimates.') }}
                 </p>
             </div>
 

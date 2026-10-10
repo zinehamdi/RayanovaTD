@@ -141,7 +141,7 @@
         setTimeout(() => { this.toastVisible = false; }, 3500);
     }
 }" 
-class="rn-glass rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 border border-rn-line/12 transition-all duration-300 shadow-2xl relative overflow-hidden">
+class="rn-glass rounded-3xl p-3 sm:p-4 lg:p-5 border border-rn-line/12 transition-all duration-300 shadow-2xl relative overflow-hidden">
 
     <!-- Notification Toast de Confirmation -->
     <div x-show="toastVisible" 
@@ -162,13 +162,13 @@ class="rn-glass rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 border border-rn-line/12 tr
     </div>
 
     <!-- Layout Dual-Pane (Desktop 12 Columns, Cols 1-7 Stage & Cols 8-12 Info) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-stretch relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch relative z-10">
         
         <!-- Panneau 1 : Vitrine Photographique Dominante (Cols 1-7, 58% width) -->
-        <div class="lg:col-span-7 flex flex-col justify-between h-full space-y-2.5">
+        <div class="lg:col-span-7 flex flex-col justify-between h-full space-y-2">
             
             <!-- Vitrine Haute Définition sur Piédestal Radial Sombre (Plein format / Fit Height) -->
-            <div class="relative w-full flex-1 h-full min-h-[380px] lg:min-h-[460px] xl:min-h-[490px] rounded-3xl overflow-hidden border border-rn-line/12 shadow-2xl transition-all duration-500 bg-rn-bg-0 flex items-center justify-center group">
+            <div class="relative w-full flex-1 h-full min-h-[250px] sm:min-h-[280px] lg:min-h-[320px] xl:min-h-[340px] rounded-2xl overflow-hidden border border-rn-line/12 shadow-2xl transition-all duration-500 bg-rn-bg-0 flex items-center justify-center group">
                 
                 <!-- Piédestal d'éclairage radial vert-olive sombre (§14) -->
                 <div class="absolute inset-0 pointer-events-none" 
@@ -229,23 +229,23 @@ class="rn-glass rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 border border-rn-line/12 tr
         </div>
 
         <!-- Panneau 2 : Spécifications, Sélecteurs & CTA (Cols 8-12) -->
-        <div class="lg:col-span-5 space-y-3 sm:space-y-3.5 text-start flex flex-col justify-between">
+        <div class="lg:col-span-5 space-y-2 sm:space-y-2.5 text-start flex flex-col justify-between">
             
             <!-- Titre et Origine -->
-            <div class="space-y-1">
+            <div class="space-y-0.5">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono font-bold uppercase tracking-wider text-rn-olive">
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-rn-olive">
                         {{ $product->category->localized_name ?? 'Agro-Export' }}
                     </span>
-                    <span class="text-xs text-rn-text-3 font-mono">
+                    <span class="text-[10px] text-rn-text-3 font-mono">
                         COI Verified
                     </span>
                 </div>
-                <h3 class="font-display text-xl sm:text-2xl font-bold text-rn-text-1 tracking-tight">
+                <h3 class="font-display text-lg sm:text-xl font-bold text-rn-text-1 tracking-tight leading-snug">
                     {{ $product->localized_title }}
                 </h3>
                 @if($product->localized_subtitle)
-                    <p class="text-xs sm:text-sm text-rn-gold font-semibold tracking-wide">
+                    <p class="text-xs text-rn-gold font-semibold tracking-wide">
                         {{ $product->localized_subtitle }} • 🇹🇳 100% Tunisian Terroir
                     </p>
                 @endif

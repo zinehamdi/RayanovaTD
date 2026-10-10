@@ -154,7 +154,8 @@
                 <div class="brand-sub">Rayanova Trading & Distribution SARL — International Agro-Export Division</div>
                 <div style="font-size: 8px; color: #475569; margin-top: 3px; line-height: 1.4;">
                     Rue Omar Kaddah, Imm. Montplaisir, 2ème étage B25, Av. Khaireddine Pacha, 1073 Tunis, Republic of Tunisia<br>
-                    <strong>Matricule Fiscal :</strong> 1975095/B/A/M/000 &nbsp;|&nbsp; <strong>RNE (Identifiant Unique) :</strong> 1975095B &nbsp;|&nbsp; <strong>Capital :</strong> 20 000 TND<br>
+                    <strong>Matricule Fiscal :</strong> 1975095/B/A/M/000 &nbsp;|&nbsp; <strong>RNE (Identifiant Unique) :</strong> 1975095B &nbsp;|&nbsp; <strong>Registre N° :</strong> B50148372026<br>
+                    <strong>Extrait RNE :</strong> ER20260645525 &nbsp;|&nbsp; <strong>Capital :</strong> 20 000 TND &nbsp;|&nbsp; <strong>Gérance :</strong> M. Khaled Ben Ammar<br>
                     Email: export@rayanovatd.com &nbsp;|&nbsp; Web: www.rayanovatd.com &nbsp;|&nbsp; Tel: +216 71 890 120
                 </div>
             </td>
@@ -184,7 +185,8 @@
                 <strong style="color: #1B3B2B; font-size: 10px;">RAYANOVA TRADING & DISTRIBUTION SARL</strong><br>
                 Rue Omar Kaddah, Imm. Montplaisir, 2ème étage B25<br>
                 Av. Khaireddine Pacha, Montplaisir, 1073 Tunis, Republic of Tunisia<br>
-                <strong>Matricule Fiscal :</strong> 1975095/B/A/M/000 &nbsp;|&nbsp; <strong>RNE :</strong> 1975095B<br>
+                <strong>Matricule Fiscal :</strong> 1975095/B/A/M/000 &nbsp;|&nbsp; <strong>RNE :</strong> 1975095B (Reg. B50148372026)<br>
+                <strong>Extrait RNE :</strong> ER20260645525 &nbsp;|&nbsp; <strong>Code Activité :</strong> 51700<br>
                 <strong>Export Gateway :</strong> Port of Rades & Sfax, Tunisia<br>
                 Email: export@rayanovatd.com &nbsp;|&nbsp; Tel: +216 71 890 120
             </td>
@@ -326,9 +328,9 @@
                                 <img src="{{ $qrData }}" style="width: 42px; height: 42px; border-radius: 2px;" alt="QR Verification">
                             </td>
                             <td style="padding-left: 8px; font-size: 7.5px; line-height: 1.35; color: #334155;">
-                                <strong style="color: #1B3B2B; font-size: 8px; text-transform: uppercase;">Official Trade Entity Verification</strong><br>
-                                Extrait RNE : <strong>ER20260645525</strong> &nbsp;|&nbsp; Réf : <strong>Y7XYX27QV3UUE0</strong><br>
-                                <span style="color: #64748b;">Rayanova T.D is a legally accredited international trading entity registered with the Republic of Tunisia National Business Register.</span>
+                                <strong style="color: #1B3B2B; font-size: 8px; text-transform: uppercase;">Official Trade Entity Verification (RNE)</strong><br>
+                                Extrait RNE : <strong>ER20260645525</strong> &nbsp;|&nbsp; Registre : <strong>B50148372026</strong> &nbsp;|&nbsp; Code : <strong>Y7XYX27QV3UUEO</strong><br>
+                                <span style="color: #64748b;">Vérification : registre-entreprises.tn/rne-public/#/qr-code/validation</span>
                             </td>
                         </tr>
                     </table>

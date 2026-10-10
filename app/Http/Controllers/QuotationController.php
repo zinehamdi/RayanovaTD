@@ -245,6 +245,12 @@ class QuotationController extends Controller
             ->setPaper('a4', 'portrait')
             ->setOption(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
 
-        return $pdf->download("Rayanova_Quotation_{$quotation->reference_number}.pdf");
+        $fileName = "Rayanova_Quotation_{$quotation->reference_number}.pdf";
+
+        if ($request->has('download')) {
+            return $pdf->download($fileName);
+        }
+
+        return $pdf->stream($fileName);
     }
 }
