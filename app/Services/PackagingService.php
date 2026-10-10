@@ -315,6 +315,82 @@ class PackagingService
                 'default_sizes' => ['5kg', '10kg', '25kg'],
                 'logistics_hint' => '1x 20ft Container = 800 cartons (15kg) = 12 Tonnes',
             ],
+
+            // ==========================================
+            // GROUP 5: FRESH PRODUCE & FRUITS (غلال وفواكه وخضار طازجة)
+            // ==========================================
+            'carton_telescopique' => [
+                'id' => 'carton_telescopique',
+                'group' => 'fresh_produce',
+                'group_label_ar' => 'غلال وفواكه وخضار طازجة',
+                'group_label_fr' => 'Fruits & Légumes Frais',
+                'group_label_en' => 'Fresh Produce & Fruits',
+                'name_en' => 'Telescopic Export Carton (4.5kg - 5kg)',
+                'name_fr' => 'Carton Télescopique Renforcé (4.5kg - 5kg)',
+                'name_ar' => 'صندوق كرتون تصدير مقوّى (Carton 4.5kg - 5kg)',
+                'desc_en' => 'Heavy-duty ventilated corrugated export carton for cold chain sea/air transport',
+                'desc_fr' => 'Carton ondulé haute résistance à aérations pour transit frigorifique',
+                'desc_ar' => 'كرتون تصدير تلسكوبي مقوى مع فتحات تهوية ملائم للشحن المبرد والجوي',
+                'shape' => 'carton',
+                'icon_emoji' => '📦',
+                'badge' => 'Export Standard',
+                'default_sizes' => ['4.5kg Open-Top', '5kg Telescopic', '10kg Master'],
+                'logistics_hint' => '1 Euro Pallet ≈ 140 cartons (4.5kg) • 1x 40ft Reefer ≈ 2,800 cartons',
+            ],
+            'plateau_alveole' => [
+                'id' => 'plateau_alveole',
+                'group' => 'fresh_produce',
+                'group_label_ar' => 'غلال وفواكه وخضار طازجة',
+                'group_label_fr' => 'Fruits & Légumes Frais',
+                'group_label_en' => 'Fresh Produce & Fruits',
+                'name_en' => 'Cushioned Plastic Cell Trays (Alvéoles)',
+                'name_fr' => 'Plateaux Alvéolés Plastique (Protection)',
+                'name_ar' => 'أطباق وبليتو بلاستيك مفرغ (Plateaux Alvéolés)',
+                'desc_en' => 'Custom molded plastic cell trays preventing friction and bruising during long transit',
+                'desc_fr' => 'Plateaux à alvéoles plastiques individuelles pour calage et protection sans choc',
+                'desc_ar' => 'أطباق بلاستيكية مفرغة لتثبيت حبات الرمان والغلال وحمايتها من الرضوض',
+                'shape' => 'plateau',
+                'icon_emoji' => '🍽️',
+                'badge' => 'Zero Bruise Safe',
+                'default_sizes' => ['Calibre 6 (6 fruits)', 'Calibre 8 (8 fruits)', 'Calibre 10 (10 fruits)'],
+                'logistics_hint' => 'Nested cell trays inside export master cartons',
+            ],
+            'ravier_plastique' => [
+                'id' => 'ravier_plastique',
+                'group' => 'fresh_produce',
+                'group_label_ar' => 'غلال وفواكه وخضار طازجة',
+                'group_label_fr' => 'Fruits & Légumes Frais',
+                'group_label_en' => 'Fresh Produce & Fruits',
+                'name_en' => 'Ventilated Clear Punnets (Raviers 250g - 500g)',
+                'name_fr' => 'Raviers Plastiques Clamshell (250g - 500g)',
+                'name_ar' => 'علب وأطباق بلاستيكية شفافة مهواة (250g - 500g)',
+                'desc_en' => 'Micro-perforated clear clamshell punnets preserving freshness and stem greenness',
+                'desc_fr' => 'Raviers transparents aérés pour grappes de tomates fraîches prêtes pour étal',
+                'desc_ar' => 'علب بلاستيكية شفافة مهواة مخصصة لحفظ عناقيد الطماطم الكرزية ونضارتها',
+                'shape' => 'punnet',
+                'icon_emoji' => '🧺',
+                'badge' => 'Retail Clamshell',
+                'default_sizes' => ['250g Clamshell', '500g Clamshell', '1kg Punnet'],
+                'logistics_hint' => '10x 250g punnets per master carton (2.5kg net)',
+            ],
+            'plateau_carton' => [
+                'id' => 'plateau_carton',
+                'group' => 'fresh_produce',
+                'group_label_ar' => 'غلال وفواكه وخضار طازجة',
+                'group_label_fr' => 'Fruits & Légumes Frais',
+                'group_label_en' => 'Fresh Produce & Fruits',
+                'name_en' => 'Open-Top Master Produce Tray (Plateau Carton)',
+                'name_fr' => 'Plateau Carton Ouvert d\'Exportation',
+                'name_ar' => 'بلاتو كرتون مسطح للمتاجر (Plateau Carton)',
+                'desc_en' => 'Stackable corrugated master tray designed for supermarkets and quick air/sea cooling',
+                'desc_fr' => 'Plateau gerbable renforcé pour distribution directe en rayon',
+                'desc_ar' => 'صندوق مسطح كرتوني يتسع لـ 10 علب بلاستيكية مع ثقوب تهوية للتبريد السريع',
+                'shape' => 'tray',
+                'icon_emoji' => '📥',
+                'badge' => 'Master Produce Tray',
+                'default_sizes' => ['2.5kg (10x250g)', '4kg (8x500g)', '5kg Bulk Tray'],
+                'logistics_hint' => '1 Euro Pallet ≈ 160 master trays (2.5kg) = 400kg net',
+            ],
         ];
     }
 
@@ -382,6 +458,15 @@ class PackagingService
         // Fallback based on Product Category or Slug
         $catSlug = strtolower($product->category->slug ?? '');
         $prodSlug = strtolower($product->slug ?? '');
+
+        if (str_contains($catSlug, 'fruit') || str_contains($catSlug, 'frais') || str_contains($prodSlug, 'grenade') || str_contains($prodSlug, 'pomegranate') || str_contains($prodSlug, 'cerise')) {
+            return [
+                $all['carton_telescopique'],
+                $all['plateau_alveole'],
+                $all['ravier_plastique'],
+                $all['plateau_carton'],
+            ];
+        }
 
         if (str_contains($catSlug, 'date') || str_contains($prodSlug, 'date') || str_contains($prodSlug, 'deglet')) {
             return [

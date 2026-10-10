@@ -56,7 +56,11 @@ class ProductManagementController extends Controller
 
                 if (!$imgPath || !file_exists($imgPath)) {
                     $catSlug = strtolower($category->slug ?? '');
-                    if (str_contains($catSlug, 'date') || str_contains(strtolower($prod->slug), 'date')) {
+                    if (str_contains(strtolower($prod->slug), 'grenade') || str_contains(strtolower($prod->slug), 'pomegranate')) {
+                        $fallback = public_path('images/products/pomegranate_export_box.jpg');
+                    } elseif (str_contains(strtolower($prod->slug), 'cerise')) {
+                        $fallback = public_path('images/products/cherry_tomatoes_export_tray.jpg');
+                    } elseif (str_contains($catSlug, 'date') || str_contains(strtolower($prod->slug), 'date')) {
                         $fallback = public_path('images/products/deglet_nour_box.jpg');
                     } elseif (str_contains(strtolower($prod->slug), 'tomato') || str_contains(strtolower($prod->slug), 'harissa')) {
                         $fallback = public_path('images/products/sundried_tomatoes_jar.jpg');

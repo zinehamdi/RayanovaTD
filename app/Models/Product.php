@@ -95,6 +95,12 @@ class Product extends Model
         // Check if file exists on disk, if not check fallbacks
         if (!file_exists(public_path($cleaned))) {
             $catSlug = strtolower($this->category->slug ?? '');
+            if (str_contains(strtolower($this->slug), 'grenade') || str_contains(strtolower($this->slug), 'pomegranate')) {
+                return asset('images/products/pomegranate_export_box.jpg');
+            }
+            if (str_contains(strtolower($this->slug), 'cerise')) {
+                return asset('images/products/cherry_tomatoes_export_tray.jpg');
+            }
             if (str_contains($catSlug, 'date') || str_contains(strtolower($this->slug), 'date')) {
                 return asset('images/products/deglet_nour_box.jpg');
             }

@@ -127,6 +127,48 @@
                 ['icon' => '🚢', 'label_ar' => 'الشحن', 'label_fr' => 'Format', 'label_en' => 'Cargo', 'val' => '160g-1.7kg'],
             ],
         ],
+        [
+            'id' => 5,
+            'slug' => 'grenades-fraiches-export-gabes',
+            'title_ar' => 'رمان قابس وتستور الملكي الفاخر للتصدير',
+            'title_en' => 'Royal Tunisian Pomegranates — Gabès & Testour Selection',
+            'title_fr' => 'Grenades Royales de Tunisie — Gabès & Testour',
+            'subtitle_ar' => 'حبات ياقوتية فاخرة • عيار ممتاز • كرتون تصدير وأطباق بلاستيكية',
+            'subtitle_en' => 'Deep Ruby Arils • High Brix Sweetness • Export Cartons & Cell Trays',
+            'subtitle_fr' => 'Arilles Rubis • Saveur Douce & Sucrée • Cartons d\'Export & Alvéoles',
+            'category_ar' => 'غلال وفواكه طازجة',
+            'category_en' => 'Fresh Export Fruits',
+            'category_fr' => 'Fruits Frais d\'Exportation',
+            'badge' => 'Grade 05 • GlobalGAP Certified',
+            'product_image' => asset('images/products/pomegranate_export_box.jpg'),
+            'metrics' => [
+                ['icon' => '💎', 'label_ar' => 'العيار', 'label_fr' => 'Calibre', 'label_en' => 'Calibre', 'val' => 'Cal. 6/8/10'],
+                ['icon' => '🍇', 'label_ar' => 'البريكس', 'label_fr' => 'Brix', 'label_en' => 'Brix', 'val' => '> 15° Brix'],
+                ['icon' => '📜', 'label_ar' => 'المعيار', 'label_fr' => 'Norme', 'label_en' => 'Standard', 'val' => 'GlobalGAP'],
+                ['icon' => '📦', 'label_ar' => 'التعليب', 'label_fr' => 'Format', 'label_en' => 'Packaging', 'val' => 'Carton 4.5kg'],
+            ],
+        ],
+        [
+            'id' => 6,
+            'slug' => 'tomates-cerises-grappes-frais',
+            'title_ar' => 'طماطم كرزية طازجة عنقودية — شمس المتوسط',
+            'title_en' => 'Fresh Mediterranean Cherry Tomatoes on the Vine',
+            'title_fr' => 'Tomates Cerises en Grappes Fraîches — Soleil Méditerranéen',
+            'subtitle_ar' => 'عناقيد طازجة حمراء ناصعة • طعم فائق الحلاوة • أطباق كرتون وعلب بلاستيكية',
+            'subtitle_en' => 'Vibrant On-The-Vine Clusters • > 9° Brix • Plastic Punnets & Master Trays',
+            'subtitle_fr' => 'Grappes Éclatantes • Haute Teneur en Sucre • Raviers Plastiques & Plateaux Carton',
+            'category_ar' => 'خضار متوسطية طازجة',
+            'category_en' => 'Fresh Mediterranean Vegetables',
+            'category_fr' => 'Légumes Frais Méditerranéens',
+            'badge' => 'Grade 06 • High Brix Sweet',
+            'product_image' => asset('images/products/cherry_tomatoes_export_tray.jpg'),
+            'metrics' => [
+                ['icon' => '🍅', 'label_ar' => 'العيار', 'label_fr' => 'Calibre', 'label_en' => 'Calibre', 'val' => '25 - 30 mm'],
+                ['icon' => '☀️', 'label_ar' => 'البريكس', 'label_fr' => 'Brix', 'label_en' => 'Brix', 'val' => '> 9° Brix'],
+                ['icon' => '📜', 'label_ar' => 'المعيار', 'label_fr' => 'Norme', 'label_en' => 'Standard', 'val' => 'ISO 22000'],
+                ['icon' => '📦', 'label_ar' => 'التعليب', 'label_fr' => 'Format', 'label_en' => 'Packaging', 'val' => 'Raviers 250g'],
+            ],
+        ],
     ];
 
     // Synchronize with database products IDs & titles
@@ -507,8 +549,8 @@ style="--scene-z: 10;">
                         </span>
                     </div>
 
-                    <!-- 4 Side-by-Side Distinct Cards Grid -->
-                    <div class="grid grid-cols-2 xl:grid-cols-4 gap-3 xl:gap-3.5 w-full">
+                    <!-- 6 Side-by-Side Distinct Cards Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 xl:gap-3 w-full">
                         <template x-for="(card, idx) in products" :key="'hero-card-rail-' + card.id">
                             <div @click="openAlbum(idx)"
                                  :id="'hero-card-' + idx"
@@ -516,7 +558,7 @@ style="--scene-z: 10;">
                                  tabindex="0"
                                  @keydown.enter="openAlbum(idx)"
                                  @keydown.space.prevent="openAlbum(idx)"
-                                 class="hero-showcase-card rounded-2xl rn-glass-card p-3 border border-rn-line/14 hover:border-rn-gold/60 shadow-xl overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.8),0_0_20px_rgba(200,164,90,0.25)]">
+                                 class="hero-showcase-card rounded-2xl rn-glass-card p-2.5 sm:p-3 border border-rn-line/14 hover:border-rn-gold/60 shadow-xl overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.8),0_0_20px_rgba(200,164,90,0.25)]">
                                 
                                 <div>
                                     <!-- Product Image Aspect 4/3 -->
