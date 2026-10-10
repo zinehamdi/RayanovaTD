@@ -111,22 +111,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 2500);
 
-    // Subtle parallax effect on scroll for corporate badges and background orbs
-    let ticking = false;
-    function onScroll() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const scrollY = window.scrollY;
-                document.querySelectorAll('[data-parallax]').forEach(el => {
-                    const speed = parseFloat(el.dataset.parallax) || 0.12;
-                    el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+    // Subtle parallax effect on scroll for corporate badges and background orbs (if present)
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    if (parallaxElements.length > 0) {
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    parallaxElements.forEach(el => {
+                        const speed = parseFloat(el.dataset.parallax) || 0.12;
+                        el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+                    });
+                    ticking = false;
                 });
-                ticking = false;
-            });
-            ticking = true;
+                ticking = true;
+            }
         }
+        window.addEventListener('scroll', onScroll, { passive: true });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
 
     // 🚢 Maritime Background Vertical Scroll Motion Engine (§21)
     const maritimeBg = document.getElementById('maritime-parallax-bg');
@@ -190,104 +193,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 🎞️ Desktop Cinematic Scene Scroll Choreography Engine (§Phase 15)
-    if (window.innerWidth >= 1024 && !prefersReducedMotion) {
-        const scenes = Array.from(document.querySelectorAll('.rn-scene'));
-        if (scenes.length > 1) {
-            let choreoTicking = false;
-
-            function updateSceneTransitions() {
-                const vh = window.innerHeight;
-                const stickyTop = 110; // 72px header + 1cm margin (~38px)
-
-                for (let i = 0; i < scenes.length; i++) {
-                    const scene = scenes[i];
-                    const rect = scene.getBoundingClientRect();
-                    const nextScene = scenes[i + 1];
-
-                    // 1. Scene completely below viewport
-                    if (rect.top >= vh) {
-                        scene.style.transform = 'scale(0.975)';
-                        scene.style.filter = 'brightness(0.90)';
-                        scene.style.opacity = '1';
-                        scene.style.visibility = 'visible';
-                        continue;
-                    }
-
-                    // 2. Scene being covered by the next scene
-                    if (nextScene) {
-                        const nextRect = nextScene.getBoundingClientRect();
-
-                        if (nextRect.top > stickyTop && nextRect.top < vh) {
-                            // nextScene is actively climbing over scene
-                            const progress = Math.max(0, Math.min(1, (vh - nextRect.top) / (vh - stickyTop)));
-
-                            // Outgoing pinned scene recedes subtly, but stays 100% solid/opaque!
-                            const outScale = 1.00 - (progress * 0.025);
-                            const outBright = 1.00 - (progress * 0.20);
-                            scene.style.transform = `scale(${outScale.toFixed(4)})`;
-                            scene.style.filter = `brightness(${outBright.toFixed(3)})`;
-                            scene.style.opacity = '1';
-                            scene.style.visibility = 'visible';
-
-                            // Incoming scene scales to full size
-                            const inScale = 0.975 + (progress * 0.025);
-                            nextScene.style.transform = `scale(${inScale.toFixed(4)})`;
-                            nextScene.style.filter = 'brightness(1)';
-                            nextScene.style.opacity = '1';
-                            nextScene.style.visibility = 'visible';
-                            continue;
-                        } else if (nextRect.top <= stickyTop) {
-                            // nextScene has FULLY covered this scene: hide completely so it never bleeds or overlaps!
-                            scene.style.transform = 'scale(0.975)';
-                            scene.style.filter = 'brightness(0.80)';
-                            scene.style.opacity = '1';
-                            scene.style.visibility = 'hidden';
-                            continue;
-                        }
-                    }
-
-                    // 3. Active resting scene or entering from below
-                    if (rect.top > stickyTop && rect.top < vh) {
-                        const enterProgress = Math.max(0, Math.min(1, (vh - rect.top) / (vh - stickyTop)));
-                        const inScale = 0.975 + (enterProgress * 0.025);
-                        scene.style.transform = `scale(${inScale.toFixed(4)})`;
-                        scene.style.filter = 'brightness(1)';
-                        scene.style.opacity = '1';
-                        scene.style.visibility = 'visible';
-                    } else {
-                        // Firmly resting at top
-                        scene.style.transform = 'scale(1)';
-                        scene.style.filter = 'brightness(1)';
-                        scene.style.opacity = '1';
-                        scene.style.visibility = 'visible';
-                    }
-                }
-
-                choreoTicking = false;
-            }
-
-            window.addEventListener('scroll', () => {
-                if (!choreoTicking) {
-                    requestAnimationFrame(updateSceneTransitions);
-                    choreoTicking = true;
-                }
-            }, { passive: true });
-
-            updateSceneTransitions();
-
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 1024) {
-                    updateSceneTransitions();
-                } else {
-                    scenes.forEach(s => {
-                        s.style.transform = '';
-                        s.style.opacity = '';
-                        s.style.filter = '';
-                        s.style.visibility = '';
-                    });
-                }
-            }, { passive: true });
-        }
-    }
 });
+

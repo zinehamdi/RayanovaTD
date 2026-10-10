@@ -219,17 +219,16 @@
     .rn-scene {
         position: relative;
         isolation: isolate;
-        margin: var(--rn-screen-margin) auto;
-        width: calc(100% - (var(--rn-screen-margin) * 2));
+        margin: clamp(1.5rem, 3vh, 2.5rem) auto;
+        width: min(calc(100% - (var(--rn-screen-margin) * 2)), 1600px);
         border-radius: var(--rn-scene-radius);
-        padding-block: clamp(2rem, 4vh, 3.5rem);
+        padding-block: clamp(2.5rem, 5vh, 4rem);
         border: 1px solid rgb(var(--rn-line) / 0.14);
         box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgb(var(--rn-line) / 0.08);
         background-color: rgb(var(--rn-bg-1));
         z-index: var(--scene-z, 1);
-        scroll-margin-top: calc(var(--rn-header-height) + var(--rn-screen-margin));
+        scroll-margin-top: calc(var(--rn-header-height) + 1.5rem);
         overflow: hidden;
-        will-change: transform, opacity, filter;
     }
 
     /* Hero Topmost Scene */
@@ -243,30 +242,23 @@
         -webkit-backdrop-filter: blur(4px);
     }
 
-    /* Desktop Viewport Stacking & Sticky Cinematic Staging (§Phase 15) */
+    /* Desktop Viewport Flow & Natural Staging */
     @media (min-width: 1024px) {
         .rn-scene {
-            position: sticky;
-            top: min(calc(var(--rn-header-height) + var(--rn-screen-margin)), calc(100svh - var(--rn-screen-margin) - 100%));
-            min-height: calc(100svh - var(--rn-header-height) - (var(--rn-screen-margin) * 2));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin: var(--rn-screen-margin) auto;
-            width: calc(100% - (var(--rn-screen-margin) * 2));
-            border-radius: var(--rn-scene-radius);
-            padding-block: clamp(1.25rem, 2.5vh, 2.25rem);
-            transform-origin: 50% 20%;
-            z-index: var(--scene-z, 1);
+            margin: clamp(2rem, 4vh, 3.5rem) auto;
+            padding-block: clamp(3rem, 6vh, 4.5rem);
         }
         .rn-scene--hero,
         .rn-scene:first-of-type {
             min-height: calc(100svh - var(--rn-header-height) - (var(--rn-screen-margin) * 2));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             z-index: 10;
         }
         .rn-scene--compact {
             min-height: auto;
-            padding-block: clamp(1.75rem, 3vh, 2.5rem);
+            padding-block: clamp(2rem, 3.5vh, 3rem);
         }
     }
 
@@ -379,15 +371,7 @@
         z-index: 0;
     }
 
-    /* ======================================================== */
-    /* 🎞️ HARDWARE-ACCELERATED CINEMATIC SCROLL TRANSITIONS     */
-    /* ======================================================== */
-    @media (min-width: 1024px) {
-        .rn-scene {
-            transform-origin: 50% 20%;
-            will-change: transform, opacity, filter;
-        }
-    }
+
 }
 
 @layer utilities {
