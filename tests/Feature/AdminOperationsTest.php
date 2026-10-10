@@ -388,4 +388,59 @@ class AdminOperationsTest extends TestCase
                 ]);
         }
     }
+
+    public function test_super_admin_can_manage_users_and_create_limited_admin(): void
+    {
+        // 1. Super Admin can view users list
+        $response = $this->actingAs($this->superAdmin)->get('/admin/users');
+        $response->assertStatus(200);
+        $response->assertSee('admin@rayanovatd.com');
+
+        // 2. Super Admin can create a new limited admin
+        $createResponse = $this->actingAs($this->superAdmin)->post('/admin/users', [
+            'name' => 'Trade Officer Test',
+            'email' => 'officer.test@rayanovatd.com',
+            'password' => 'secret12345',
+            'role' => 'admin',
+        ]);
+
+        $createResponse->assertRedirect('/admin/users');
+        $this->assertDatabaseHas('users', ['email' => 'officer.test@rayanovatd.com']);
+
+        $newUser = User::where('email', 'officer.test@rayanovatd.com')->firstOrFail();
+        $this->assertTrue($newUser->hasRole('admin'));
+        $this->assertFalse($newUser->hasRole('super_admin'));
+
+        // 3. Super Admin can delete the created user
+        $deleteResponse = $this->actingAs($this->superAdmin)->delete("/admin/users/{$newUser->id}");
+        $deleteResponse->assertRedirect('/admin/users');
+        $this->assertDatabaseMissing('users', ['email' => 'officer.test@rayanovatd.com']);
+    }
+
+    public function test_standard_admin_cannot_access_user_management(): void
+    {
+        $response = $this->actingAs($this->salesAdmin)->get('/admin/users');
+        $response->assertStatus(403);
+    }
+
+    public function test_admin_can_change_own_password(): void
+    {
+        $response = $this->actingAs($this->salesAdmin)->get('/admin/profile');
+        $response->assertStatus(200);
+
+        $updateResponse = $this->actingAs($this->salesAdmin)->put('/admin/profile/password', [
+            'current_password' => 'password123',
+            'password' => 'newPassword2026!',
+            'password_confirmation' => 'newPassword2026!',
+        ]);
+
+        $updateResponse->assertRedirect('/admin/profile');
+
+        $this->salesAdmin->refresh();
+        $this->assertTrue(\Illuminate\Support\Facades\Hash::check('newPassword2026!', $this->salesAdmin->password));
+
+        // Restore password for test consistency
+        $this->salesAdmin->update(['password' => \Illuminate\Support\Facades\Hash::make('password123')]);
+    }
 }
+

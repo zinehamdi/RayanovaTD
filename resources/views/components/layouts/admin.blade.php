@@ -98,6 +98,13 @@
                         <span>{{ __('admin.hero_slider_cms') }}</span>
                     </a>
 
+                    @if(auth()->user()->hasRole('super_admin'))
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm md:text-base font-bold transition-all {{ request()->routeIs('admin.users.*') ? 'bg-gradient-to-r from-gold-500 to-gold-400 text-slate-950 shadow-lg shadow-gold-500/30 ring-1 ring-gold-300' : 'text-slate-200 hover:text-white hover:bg-white/10' }}">
+                            <span class="text-xl">👥</span>
+                            <span>{{ __('admin.team_administrators') ?? 'فريق العمل والمشرفين' }}</span>
+                        </a>
+                    @endif
+
                     <a href="{{ url('/') }}" target="_blank" class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm md:text-base font-semibold text-gold-300 hover:text-gold-200 hover:bg-white/10 transition-all border border-gold-500/20 mt-4">
                         <span class="text-xl">🌐</span>
                         <span>{{ __('admin.open_vitrine') }}</span>
@@ -107,17 +114,25 @@
 
             <!-- Profile & Logout Footer -->
             <div class="pt-6 border-t border-gold-500/20 space-y-4">
-                <div class="flex items-center gap-3.5">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-slate-950 font-black text-base flex items-center justify-center shadow-md shrink-0">
-                        {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                <a href="{{ route('admin.profile.edit') }}" 
+                   class="flex items-center justify-between p-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer group"
+                   title="{{ __('admin.profile_settings') ?? 'تغيير كلمة المرور والملف الشخصي' }}">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-slate-950 font-black text-sm flex items-center justify-center shadow-md shrink-0 group-hover:ring-2 group-hover:ring-gold-400">
+                            {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="block text-sm font-bold text-white truncate group-hover:text-gold-300 transition-colors">{{ auth()->user()->name ?? 'Administrator' }}</span>
+                            <span class="block text-xs font-semibold {{ auth()->user()->hasRole('super_admin') ? 'text-gold-300' : 'text-emerald-300' }}">
+                                {{ auth()->user()->hasRole('super_admin') ? __('admin.super_admin_role') : __('admin.sales_officer_role') }}
+                            </span>
+                        </div>
                     </div>
-                    <div class="overflow-hidden">
-                        <span class="block text-sm font-bold text-white truncate">{{ auth()->user()->name ?? 'Administrator' }}</span>
-                        <span class="block text-xs font-semibold {{ auth()->user()->hasRole('super_admin') ? 'text-gold-300' : 'text-emerald-300' }}">
-                            {{ auth()->user()->hasRole('super_admin') ? __('admin.super_admin_role') : __('admin.sales_officer_role') }}
-                        </span>
-                    </div>
-                </div>
+                    <span class="text-xs text-gold-400 font-bold px-2 py-1 rounded-lg bg-gold-500/10 border border-gold-500/20 group-hover:bg-gold-500 group-hover:text-slate-950 transition-all">
+                        ⚙️ {{ __('admin.edit') ?? 'تعديل' }}
+                    </span>
+                </a>
+
 
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
