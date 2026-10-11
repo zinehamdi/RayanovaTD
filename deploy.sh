@@ -173,10 +173,10 @@ log_success "Database migrations executed."
 # ------------------------------------------------------------------------------
 # 8. Clear Stale Caches & Build Production Cache Stores
 # ------------------------------------------------------------------------------
-log_info "Optimizing caches (Config, Route, View, Event)..."
+log_info "Optimizing caches (Config, View, Event, Route Clear)..."
 $PHP_EXEC artisan optimize:clear
 $PHP_EXEC artisan config:cache
-$PHP_EXEC artisan route:cache
+$PHP_EXEC artisan route:clear
 $PHP_EXEC artisan view:cache
 $PHP_EXEC artisan event:cache
 log_success "Production caches generated."
