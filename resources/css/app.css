@@ -138,7 +138,8 @@
         .rn-glass-light,
         .rn-glass,
         .rn-glass-dark,
-        .rn-glass-strong {
+        .rn-glass-strong,
+        .rn-glass-card {
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
@@ -211,23 +212,28 @@
     /* 🏛️ UNIFIED FRAMED CINEMATIC SCENE SYSTEM (§PHASE 15)     */
     /* ======================================================== */
     :root {
-        --rn-screen-margin: 1cm;
+        --rn-screen-margin: clamp(0.5rem, 2vw, 1cm);
         --rn-header-height: 72px;
-        --rn-scene-radius: 1.5rem;
+        --rn-scene-radius: 1.25rem;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--rn-header-height);
     }
 
     .rn-scene {
         position: relative;
         isolation: isolate;
-        margin: clamp(1.5rem, 3vh, 2.5rem) auto;
+        margin: clamp(1rem, 2vh, 1.75rem) auto;
         width: min(calc(100% - (var(--rn-screen-margin) * 2)), 1600px);
         border-radius: var(--rn-scene-radius);
-        padding-block: clamp(2.5rem, 5vh, 4rem);
+        padding-block: clamp(1.5rem, 3vh, 2.5rem);
         border: 1px solid rgb(var(--rn-line) / 0.14);
         box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgb(var(--rn-line) / 0.08);
         background-color: rgb(var(--rn-bg-1));
         z-index: var(--scene-z, 1);
-        scroll-margin-top: calc(var(--rn-header-height) + 1.5rem);
+        scroll-margin-top: calc(var(--rn-header-height) + 1rem);
         overflow: hidden;
     }
 
@@ -242,24 +248,45 @@
         -webkit-backdrop-filter: blur(4px);
     }
 
-    /* Desktop Viewport Flow & Natural Staging */
+    /* Desktop Viewport Flow & Natural Staging (Each Section Fits the Screen) */
     @media (min-width: 1024px) {
-        .rn-scene {
-            margin: clamp(2rem, 4vh, 3.5rem) auto;
-            padding-block: clamp(3rem, 6vh, 4.5rem);
+        html {
+            scroll-snap-type: y proximity;
         }
-        .rn-scene--hero,
-        .rn-scene:first-of-type {
-            min-height: calc(100svh - var(--rn-header-height) - (var(--rn-screen-margin) * 2));
+
+        .rn-scene {
+            margin: 1rem auto;
+            min-height: calc(100svh - var(--rn-header-height) - 2.25rem);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding-block: clamp(1.25rem, 2.5vh, 2.25rem);
+            scroll-margin-top: calc(var(--rn-header-height) + 0.5rem);
+            scroll-snap-align: start;
+        }
+
+        .rn-scene--hero,
+        .rn-scene:first-of-type {
+            min-height: calc(100svh - var(--rn-header-height) - 1.25rem);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            padding-block: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             z-index: 10;
         }
+
         .rn-scene--compact {
             min-height: auto;
-            padding-block: clamp(2rem, 3.5vh, 3rem);
+            padding-block: clamp(1.5rem, 3vh, 2.5rem);
         }
+    }
+
+    /* Performance optimization: offscreen content-visibility */
+    .rn-scene:not(:first-of-type):not(.rn-scene--hero) {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 700px;
     }
 
     .rn-scene__inner {

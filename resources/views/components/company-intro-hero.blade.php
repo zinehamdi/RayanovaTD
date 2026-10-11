@@ -455,7 +455,7 @@ style="--scene-z: 10;">
         </template>
 
         <!-- CENTERED GOLD BRAND HERO HEADING (With Vivid Neon Glow & Radial Halo) -->
-        <div class="w-full text-center pt-2 sm:pt-4 pb-4 sm:pb-8 lg:pb-12 relative z-10 shrink-0">
+        <div class="w-full text-center pt-1 sm:pt-2 pb-2 sm:pb-3 lg:pb-4 relative z-10 shrink-0">
             <!-- Ambient Radial Light Halo -->
             <div class="absolute inset-x-0 -top-6 bottom-0 max-w-4xl mx-auto bg-[radial-gradient(ellipse_at_center,rgba(248,210,121,0.28)_0%,rgba(217,164,65,0.1)_50%,transparent_75%)] blur-2xl pointer-events-none -z-10" aria-hidden="true"></div>
 
@@ -464,10 +464,10 @@ style="--scene-z: 10;">
                 <span class="w-1.5 h-1.5 rotate-45 bg-[#FFF9E6] shadow-[0_0_8px_#F8D279] shrink-0 hidden sm:block"></span>
 
                 <div class="text-center px-3">
-                    <h2 class="rn-neon-gold font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.35rem] font-bold uppercase tracking-[0.16em] sm:tracking-[0.24em] select-none">
+                    <h2 class="rn-neon-gold font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.2rem] font-bold uppercase tracking-[0.16em] sm:tracking-[0.22em] select-none">
                         {{ $currLocale === 'ar' ? 'ريانوفا للتجارة والتوزيع' : 'RAYANOVA TRADING & DISTRIBUTION' }}
                     </h2>
-                    <p class="text-[10px] sm:text-xs font-mono tracking-[0.24em] text-[#FFF0C2] uppercase mt-1 drop-shadow-[0_0_8px_rgba(248,210,121,0.8)] font-semibold">
+                    <p class="text-[10px] sm:text-xs font-mono tracking-[0.22em] text-[#FFF0C2] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(248,210,121,0.8)] font-semibold">
                         {{ $currLocale === 'ar' ? 'RAYANOVA TRADING & DISTRIBUTION • INTERNATIONAL AGRO-EXPORT' : 'ريانوفا للتجارة والتوزيع • TUNISIAN EXPORT COMMODITIES' }}
                     </p>
                 </div>
@@ -478,14 +478,14 @@ style="--scene-z: 10;">
         </div>
 
         <!-- STATE B: TWO-COLUMN HERO ARCHITECTURE (Company Intro + 4 Hero Cards Stack) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end w-full mt-auto mb-2 sm:mb-4 lg:mb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-end w-full mt-auto mb-2 sm:mb-3 lg:mb-4">
             
             <!-- COLUMN 1 (LEFT/START): Editorial Intro & Actions -->
-            <div class="lg:col-span-5 xl:col-span-6 space-y-4 text-start pb-1">
+            <div class="lg:col-span-5 xl:col-span-6 space-y-3 sm:space-y-4 text-start pb-1">
                 
                 <!-- Eyebrow Badge (Admin controllable) -->
                 @if($companyHero?->show_badge ?? true)
-                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rn-bg-2/80 border border-rn-line/12 text-xs font-medium text-rn-gold shadow-sm backdrop-blur-md">
+                <div class="inline-flex items-center gap-2 px-3.5 py-0.5 rounded-full bg-rn-bg-2/80 border border-rn-line/12 text-xs font-medium text-rn-gold shadow-sm backdrop-blur-md">
                     <span class="w-1.5 h-1.5 rounded-full bg-rn-gold animate-pulse"></span>
                     <span class="uppercase tracking-wider">
                         {{ $finalBadge }}
@@ -494,35 +494,35 @@ style="--scene-z: 10;">
                 @endif
 
                 <!-- Display Headline & Subtitle -->
-                <div class="space-y-3">
-                    <h1 class="font-display text-2xl sm:text-4xl lg:text-[2.6rem] xl:text-[3rem] font-bold tracking-tight text-rn-text-1 leading-[1.08] rtl:leading-[1.25] max-w-[18ch] rtl:max-w-[16ch] drop-shadow-xl">
+                <div class="space-y-2 sm:space-y-2.5">
+                    <h1 class="font-display text-2xl sm:text-3xl lg:text-[2.35rem] xl:text-[2.75rem] font-bold tracking-tight text-rn-text-1 leading-[1.08] rtl:leading-[1.25] max-w-[18ch] rtl:max-w-[16ch] drop-shadow-xl">
                         {{ $finalTitle }}
                     </h1>
                     
-                    <p class="font-sans text-sm sm:text-base text-rn-text-2 leading-relaxed max-w-[52ch]">
+                    <p class="font-sans text-xs sm:text-sm text-rn-text-2 leading-relaxed max-w-[52ch]">
                         {{ $finalSubtitle }}
                     </p>
                 </div>
 
                 <!-- High-Impact Action CTAs -->
-                <div class="flex flex-wrap items-center gap-3 pt-1">
+                <div class="flex flex-wrap items-center gap-3 pt-0.5">
                     <!-- Primary CTA (Gold) -->
                     <a href="{{ LaravelLocalization::localizeUrl('/rfq') }}" 
-                       class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-rn-gold-soft to-rn-gold hover:from-rn-gold hover:to-rn-gold-soft text-rn-bg-0 font-bold text-xs sm:text-sm shadow-xl shadow-rn-gold/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+                       class="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-rn-gold-soft to-rn-gold hover:from-rn-gold hover:to-rn-gold-soft text-rn-bg-0 font-bold text-xs sm:text-sm shadow-xl shadow-rn-gold/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
                         <span>{{ $companyHero?->localized_primary_cta ?? ($currLocale === 'ar' ? 'طلب تسعيرة رسمية (RFQ)' : ($currLocale === 'fr' ? 'Devis Officiel (RFQ)' : 'Request Export RFQ')) }}</span>
                         <svg class="w-4 h-4 {{ $isRtl ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
 
                     <!-- Secondary CTA (Glass) -->
                     <a href="{{ LaravelLocalization::localizeUrl('/#products') }}" 
-                       class="inline-flex items-center gap-2 px-5 py-3 rounded-full rn-glass-light hover:border-rn-line/25 text-rn-text-1 font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+                       class="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full rn-glass-light hover:border-rn-line/25 text-rn-text-1 font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
                         <span>{{ $currLocale === 'ar' ? 'المنتجات والتعليب' : ($currLocale === 'fr' ? 'Produits & Packaging' : 'Products & Packaging') }}</span>
                         <svg class="w-4 h-4 text-rn-text-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                     </a>
                 </div>
 
                 <!-- Inline Trust Line (Single row with gold checkmarks) -->
-                <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-rn-text-3 font-medium pt-2">
+                <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] sm:text-xs text-rn-text-3 font-medium pt-1">
                     <span class="inline-flex items-center gap-1.5"><span class="text-rn-gold font-bold">✓</span> COI Laboratory Certified</span>
                     <span class="text-rn-line/20">·</span>
                     <span class="inline-flex items-center gap-1.5"><span class="text-rn-gold font-bold">✓</span> US FDA Registered</span>
@@ -538,7 +538,7 @@ style="--scene-z: 10;">
             <div class="lg:col-span-7 xl:col-span-6 flex flex-col justify-end">
                 
                 <!-- Desktop Side-by-Side Product Showcase Rail (lg:flex) -->
-                <div class="hidden lg:flex flex-col gap-2.5 w-full" aria-label="{{ $currLocale === 'ar' ? 'المنتجات التصديرية الكبرى' : ($currLocale === 'fr' ? 'Produits Phares pour l\'Export' : 'Key Export Commodities') }}">
+                <div class="hidden lg:flex flex-col gap-2 w-full" aria-label="{{ $currLocale === 'ar' ? 'المنتجات التصديرية الكبرى' : ($currLocale === 'fr' ? 'Produits Phares pour l\'Export' : 'Key Export Commodities') }}">
                     <div class="flex items-center justify-between pb-0.5">
                         <span class="text-xs font-mono font-bold uppercase tracking-wider text-rn-gold flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-rn-gold"></span>
@@ -550,7 +550,7 @@ style="--scene-z: 10;">
                     </div>
 
                     <!-- 6 Side-by-Side Distinct Cards Grid -->
-                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 xl:gap-3 w-full">
+                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2 xl:gap-2.5 w-full">
                         <template x-for="(card, idx) in products" :key="'hero-card-rail-' + card.id">
                             <div @click="openAlbum(idx)"
                                  :id="'hero-card-' + idx"
@@ -558,39 +558,39 @@ style="--scene-z: 10;">
                                  tabindex="0"
                                  @keydown.enter="openAlbum(idx)"
                                  @keydown.space.prevent="openAlbum(idx)"
-                                 class="hero-showcase-card rounded-2xl rn-glass-card p-2.5 sm:p-3 border border-rn-line/14 hover:border-rn-gold/60 shadow-xl overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.8),0_0_20px_rgba(200,164,90,0.25)]">
+                                 class="hero-showcase-card rounded-2xl rn-glass-card p-2 sm:p-2.5 border border-rn-line/14 hover:border-rn-gold/60 shadow-xl overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.8),0_0_20px_rgba(200,164,90,0.25)]">
                                 
                                 <div>
-                                    <!-- Product Image Aspect 4/3 -->
-                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-rn-bg-0 relative mb-2.5 border border-rn-line/10">
+                                    <!-- Product Image Aspect 16/11 -->
+                                    <div class="w-full aspect-[16/11] rounded-xl overflow-hidden bg-rn-bg-0 relative mb-2 border border-rn-line/10">
                                         <img :src="card.product_image" 
                                              :alt="card['title_{{ $currLocale }}'] || card.title_en" 
                                              width="260"
-                                             height="195"
+                                             height="180"
                                              loading="lazy"
                                              decoding="async"
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                        <span class="absolute top-2 start-2 px-1.5 py-0.5 rounded bg-rn-bg-0/85 text-[10px] font-mono font-bold text-rn-gold border border-rn-line/15 backdrop-blur-sm"
+                                        <span class="absolute top-1.5 start-1.5 px-1.5 py-0.5 rounded bg-rn-bg-0/85 text-[9px] font-mono font-bold text-rn-gold border border-rn-line/15 backdrop-blur-sm"
                                               x-text="'0' + (idx + 1)"></span>
-                                        <span class="absolute bottom-2 end-2 px-2 py-0.5 rounded-full bg-rn-bg-0/90 text-[9px] font-mono font-bold text-rn-text-2 border border-rn-line/15 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span class="absolute bottom-1.5 end-1.5 px-1.5 py-0.5 rounded-full bg-rn-bg-0/90 text-[8px] font-mono font-bold text-rn-text-2 border border-rn-line/15 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
                                             {{ $currLocale === 'ar' ? 'عرض' : 'Specs' }} ↗
                                         </span>
                                     </div>
 
                                     <!-- Category & Title -->
-                                    <div class="space-y-1 text-start">
-                                        <span class="block text-[10px] font-mono font-semibold text-rn-olive uppercase tracking-wider truncate"
+                                    <div class="space-y-0.5 text-start">
+                                        <span class="block text-[9px] font-mono font-semibold text-rn-olive uppercase tracking-wider truncate"
                                               x-text="card['category_{{ $currLocale }}'] || card.category_en"></span>
-                                        <h3 class="text-xs xl:text-sm font-bold text-rn-text-1 leading-snug line-clamp-2 min-h-[2.4em]"
+                                        <h3 class="text-[11px] xl:text-xs font-bold text-rn-text-1 leading-snug line-clamp-2 min-h-[2.4em]"
                                             x-text="card['title_{{ $currLocale }}'] || card.title_en"
                                             :title="card['title_{{ $currLocale }}'] || card.title_en"></h3>
                                     </div>
                                 </div>
 
                                 <!-- Card Bottom: Badge & Action Indicator -->
-                                <div class="pt-2 mt-2 flex items-center justify-between border-t border-rn-line/10 text-[11px] text-rn-text-3">
-                                    <span class="truncate font-mono font-medium text-rn-text-2 text-[10px]" x-text="card.badge"></span>
-                                    <span class="w-6 h-6 rounded-full bg-rn-bg-1/80 border border-rn-line/15 flex items-center justify-center text-rn-gold text-xs group-hover:bg-rn-gold group-hover:text-rn-bg-0 group-hover:border-rn-gold transition-all shrink-0">
+                                <div class="pt-1.5 mt-1.5 flex items-center justify-between border-t border-rn-line/10 text-[10px] text-rn-text-3">
+                                    <span class="truncate font-mono font-medium text-rn-text-2 text-[9px]" x-text="card.badge"></span>
+                                    <span class="w-5 h-5 rounded-full bg-rn-bg-1/80 border border-rn-line/15 flex items-center justify-center text-rn-gold text-[10px] group-hover:bg-rn-gold group-hover:text-rn-bg-0 group-hover:border-rn-gold transition-all shrink-0">
                                         <span class="{{ $isRtl ? 'rotate-180' : '' }}">→</span>
                                     </span>
                                 </div>
@@ -620,13 +620,13 @@ style="--scene-z: 10;">
                                  tabindex="0"
                                  @keydown.enter="openAlbum(idx)"
                                  @keydown.space.prevent="openAlbum(idx)"
-                                 class="snap-start shrink-0 w-[240px] sm:w-[260px] rounded-2xl rn-glass-card p-3 border border-rn-line/14 active:border-rn-gold/50 shadow-lg overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between">
+                                 class="snap-start shrink-0 w-[220px] sm:w-[240px] rounded-2xl rn-glass-card p-2.5 sm:p-3 border border-rn-line/14 active:border-rn-gold/50 shadow-lg overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rn-gold flex flex-col justify-between">
                                 <div>
-                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-rn-bg-0 relative mb-2 border border-rn-line/10">
+                                    <div class="w-full aspect-[16/11] rounded-xl overflow-hidden bg-rn-bg-0 relative mb-2 border border-rn-line/10">
                                         <img :src="card.product_image" 
                                              :alt="card['title_{{ $currLocale }}'] || card.title_en" 
                                              width="260"
-                                             height="195"
+                                             height="180"
                                              loading="lazy"
                                              decoding="async"
                                              class="w-full h-full object-cover">
@@ -656,7 +656,7 @@ style="--scene-z: 10;">
     </div>
 
     <!-- BOTTOM INFORMATION RAIL (§17) -->
-    <div class="w-full rn-glass-dark border-t border-rn-line/10 py-3 px-4 sm:px-8 lg:px-12 relative z-20 shrink-0">
+    <div class="w-full rn-glass-dark border-t border-rn-line/10 py-2 sm:py-2.5 px-4 sm:px-8 lg:px-12 relative z-20 shrink-0">
         <div class="max-w-[1600px] mx-auto overflow-x-auto no-scrollbar snap-x snap-mandatory">
             <div class="flex items-center justify-between min-w-max lg:min-w-0 divide-x divide-rn-line/10 rtl:divide-x-reverse">
                 

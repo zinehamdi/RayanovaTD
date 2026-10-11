@@ -86,15 +86,15 @@
 
     <!-- 3. Export Quality & Chemical Laboratory Analysis Scene (§14 & §19, id="export") -->
     <section id="export" class="rn-scene rn-scene--bento" data-scene style="--scene-z: 30;">
-        <div class="rn-scene__inner space-y-8 lg:space-y-10">
+        <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Bento Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-2.5">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full rn-glass-light border border-rn-line/12 text-xs font-mono font-bold text-rn-gold shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-rn-gold"></span>
                     <span class="uppercase tracking-widest">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'المختبر والمعايير الكيميائية التصديرية' : 'Chemical Purity & Lab Analysis Terminal' }}</span>
                 </div>
-                <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-rn-text-1 tracking-tight leading-tight">
+                <h2 class="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-rn-text-1 tracking-tight leading-tight">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'دقة كيميائية استثنائية واعتماد دولي صارم' : 'Precision Chemical Quality & Accredited Lab Analysis' }}
                 </h2>
                 <p class="text-xs sm:text-sm text-rn-text-2 leading-relaxed font-normal">
@@ -105,10 +105,10 @@
             </div>
 
             <!-- Lab Analysis Grid (Col-Span-7 Terminal + Col-Span-5 Panel Console) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
                 
                 <!-- Tile 1: Terminal Laboratoire & Pureté Chimique COI (Col-Span-7) -->
-                <div class="lg:col-span-7 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="lg:col-span-7 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
                     
                     <div class="space-y-5">
                         <!-- Top Bar with Index & Status -->
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Tile 2: Organoleptic & Quality Assurance Console (Col-Span-5) -->
-                <div class="lg:col-span-5 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="lg:col-span-5 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -232,15 +232,15 @@
 
     <!-- 4. Global Logistics & Bulk Freight Scene (§14 & §19, id="logistics") -->
     <section id="logistics" class="rn-scene rn-scene--logistics" data-scene style="--scene-z: 40;">
-        <div class="rn-scene__inner space-y-8 lg:space-y-10">
+        <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Logistics Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-2.5">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full rn-glass-light border border-rn-line/12 text-xs font-mono font-bold text-rn-cyan shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-rn-cyan"></span>
                     <span class="uppercase tracking-widest">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'اللوجستيات والشحن البحري السائب' : 'Global Logistics & Turnkey Export' }}</span>
                 </div>
-                <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-rn-text-1 tracking-tight leading-tight">
+                <h2 class="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-rn-text-1 tracking-tight leading-tight">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'شحن بحري متكامل وحلول تعبئة مرنة' : 'Multimodal Freight & Bulk Export Infrastructure' }}
                 </h2>
                 <p class="text-xs sm:text-sm text-rn-text-2 leading-relaxed font-normal">
@@ -251,10 +251,10 @@
             </div>
 
             <!-- 3 Columns Grid (Col 4 / Col 4 / Col 4) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
                 
                 <!-- Tile 1: Logistique Maritime & Capacités Vrac Flexitank -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -307,7 +307,7 @@
                 </div>
 
                 <!-- Tile 2: Studio Embouteillage OEM & Private Label -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -360,7 +360,7 @@
                 </div>
 
                 <!-- Tile 3: Passerelles Commerciales & Incoterms Mondiaux -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -419,7 +419,7 @@
 
     <!-- 5. Interactive Supply Chain Route Timeline Scene (§18 & §19) -->
     <section id="terroir" class="rn-scene rn-scene--terroir" data-scene style="--scene-z: 50;">
-        <div class="rn-scene__inner space-y-6 lg:space-y-8">
+        <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto space-y-2 lg:space-y-3">
@@ -580,7 +580,7 @@
 
     <!-- 6. Accredited Certifications Scene (§19) -->
     <section id="certifications" class="rn-scene rn-scene--certifications" data-scene style="--scene-z: 60;">
-        <div class="rn-scene__inner space-y-6 lg:space-y-8">
+        <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <div class="text-center max-w-2xl mx-auto space-y-2 lg:space-y-3">
                 <span class="text-xs sm:text-sm font-bold text-rn-gold rn-glass-light border border-rn-line/12 px-4 py-1.5 rounded-full uppercase tracking-widest font-mono shadow-sm inline-block">Global Compliance</span>
@@ -622,7 +622,7 @@
     <!-- 7. Final Conversion CTA Scene (§19 & §21) -->
     <section id="final-cta" class="rn-scene rn-scene--cta" data-scene style="--scene-z: 70;">
         <div class="rn-scene__inner">
-            <div class="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 py-6 sm:py-10">
+            <div class="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 py-4 sm:py-6">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rn-bg-2/80 border border-rn-line/12 text-xs font-mono font-bold text-rn-gold shadow-sm backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-rn-gold"></span>
                     <span class="uppercase tracking-widest">

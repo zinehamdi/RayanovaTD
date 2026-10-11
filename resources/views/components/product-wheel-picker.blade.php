@@ -46,28 +46,26 @@
         let cat = '{{ strtolower($product->category->slug ?? "") }}';
         let prod = '{{ strtolower($product->slug ?? "") }}';
 
-        @if(!Str::startsWith($product->featured_image, 'storage/'))
-            if (cat.includes('olive') || cat.includes('oil') || prod.includes('oil')) {
-                if (pkg.includes('bottle') || pkg.includes('marasca') || pkg.includes('glass') || pkg.includes('dorica')) {
-                    return '{{ asset("images/products/marasca_studio_clean.jpg") }}';
-                }
-                if (pkg.includes('bulk') || pkg.includes('flexitank') || pkg.includes('ibc')) {
-                    return '{{ asset("images/products/bulk_drum_flexitank.jpg") }}';
-                }
-                if (pkg.includes('tin')) {
-                    return '{{ asset("images/products/olive_oil_tin.jpg") }}';
-                }
+        if (cat.includes('olive') || cat.includes('oil') || prod.includes('oil')) {
+            if (pkg.includes('bulk') || pkg.includes('flexitank') || pkg.includes('ibc')) {
+                return '{{ asset("images/products/bulk_drum_flexitank.jpg") }}';
             }
-            if (cat.includes('date') || prod.includes('date') || prod.includes('deglet')) {
-                return '{{ asset("images/products/deglet_nour_box.jpg") }}';
+            if (pkg.includes('tin')) {
+                return '{{ asset("images/products/olive_oil_tin.jpg") }}';
             }
-            if (cat.includes('mer') || cat.includes('thon') || prod.includes('thon') || prod.includes('tuna') || prod.includes('sardine')) {
-                return '{{ asset("images/products/canned_tuna_can.jpg") }}';
+            if (pkg.includes('bottle') || pkg.includes('marasca') || pkg.includes('glass') || pkg.includes('dorica')) {
+                return defaultImage;
             }
-            if (cat.includes('tomate') || prod.includes('tomate')) {
-                return '{{ asset("images/products/sundried_tomatoes_jar.jpg") }}';
-            }
-        @endif
+        }
+        if (cat.includes('date') || prod.includes('date') || prod.includes('deglet')) {
+            return '{{ asset("images/products/deglet_nour_box.jpg") }}';
+        }
+        if (cat.includes('mer') || cat.includes('thon') || prod.includes('thon') || prod.includes('tuna') || prod.includes('sardine')) {
+            return '{{ asset("images/products/canned_tuna_can.jpg") }}';
+        }
+        if (cat.includes('tomate') || prod.includes('tomate')) {
+            return '{{ asset("images/products/sundried_tomatoes_jar.jpg") }}';
+        }
 
         return defaultImage;
     },
@@ -168,7 +166,7 @@ class="rn-glass rounded-3xl p-3 sm:p-4 lg:p-5 border border-rn-line/12 transitio
         <div class="lg:col-span-7 flex flex-col justify-between h-full space-y-2">
             
             <!-- Vitrine Haute Définition sur Piédestal Radial Sombre (Plein format / Fit Height) -->
-            <div class="relative w-full flex-1 h-full min-h-[250px] sm:min-h-[280px] lg:min-h-[320px] xl:min-h-[340px] rounded-2xl overflow-hidden border border-rn-line/12 shadow-2xl transition-all duration-500 bg-rn-bg-0 flex items-center justify-center group">
+            <div class="relative w-full flex-1 h-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto min-h-[220px] sm:min-h-[260px] lg:min-h-[290px] xl:min-h-[310px] rounded-2xl overflow-hidden border border-rn-line/12 shadow-2xl transition-all duration-500 bg-rn-bg-0 flex items-center justify-center group">
                 
                 <!-- Piédestal d'éclairage radial vert-olive sombre (§14) -->
                 <div class="absolute inset-0 pointer-events-none" 
