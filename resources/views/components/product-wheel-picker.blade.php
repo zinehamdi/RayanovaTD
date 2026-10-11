@@ -174,7 +174,7 @@ class="rn-glass rounded-3xl p-3 sm:p-4 lg:p-5 border border-rn-line/12 transitio
 
                 <!-- Image Plein Cadre Haute Définition -->
                 <img :src="activeProductImage" 
-                     :alt="'{{ $product->localized_title }}'" 
+                     alt="{{ $product->localized_title }}" 
                      width="640"
                      height="480"
                      loading="lazy"

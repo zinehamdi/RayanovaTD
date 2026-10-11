@@ -79,25 +79,25 @@
     @endphp
 
     <!-- Barre d'Annonce Internationale B2B (Slim non-sticky announcement) -->
-    <div class="bg-rn-bg-0/90 backdrop-blur-md text-xs sm:text-sm py-2 px-4 sm:px-8 lg:px-12 border-b border-rn-line/10 text-rn-text-2 relative z-[110]">
-        <div class="max-w-wide mx-auto flex flex-wrap justify-between items-center gap-3">
-            <div class="flex items-center gap-2.5 font-semibold">
-                <span class="inline-flex items-center gap-2 text-rn-gold">
-                    <span class="w-2 h-2 rounded-full bg-rn-gold"></span>
+    <div class="bg-rn-bg-0/90 backdrop-blur-md text-[11px] sm:text-xs py-1.5 px-3 sm:px-8 lg:px-12 border-b border-rn-line/10 text-rn-text-2 relative z-[110]">
+        <div class="max-w-wide mx-auto flex flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-3">
+            <div class="flex items-center gap-2 font-semibold">
+                <span class="inline-flex items-center gap-1.5 text-rn-gold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rn-gold"></span>
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'موسم الحصاد والتصدير 2026 متاح الآن رسمياً' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Récolte 2026 disponible à l\'export international' : '2026 Harvest Now Open for International Export') }}
                 </span>
                 <span class="hidden sm:inline text-rn-line/20">•</span>
                 <span class="hidden sm:inline text-rn-text-3 font-normal">Incoterms 2020: FOB, CIF, CFR, EXW</span>
             </div>
-            <div class="flex items-center gap-4">
-                <a href="{{ route('catalog.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'lang' => LaravelLocalization::getCurrentLocale()]) }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 transition-colors font-semibold">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="{{ route('catalog.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'lang' => LaravelLocalization::getCurrentLocale()]) }}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-amber-400 hover:text-amber-300 transition-colors font-semibold">
                     <span>📄</span>
                     <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'كتالوج المنتجات PDF' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Catalogue B2B PDF' : 'B2B Catalog PDF') }}</span>
                 </a>
                 <span class="text-rn-line/20">•</span>
-                <a href="https://wa.me/{{ $whatsappDigits }}?text={{ urlencode('Hello Rayanova Export Desk, I would like to inquire about quotations.') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-rn-text-2 hover:text-white transition-colors font-medium">
+                <a href="https://wa.me/{{ $whatsappDigits }}?text={{ urlencode('Hello Rayanova Export Desk, I would like to inquire about quotations.') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-rn-text-2 hover:text-white transition-colors font-medium">
                     <svg class="w-3.5 h-3.5 text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-                    <span>WhatsApp Export Desk</span>
+                    <span>WhatsApp</span>
                 </a>
             </div>
         </div>
@@ -110,18 +110,18 @@
             class="sticky top-0 z-[100] transition-colors duration-300 border-b border-rn-line/10"
             :class="scrolled ? 'rn-glass-strong shadow-lg shadow-black/40' : 'rn-glass-dark'">
         <div class="max-w-wide w-full mx-auto px-4 sm:px-8 lg:px-12">
-            <div class="flex items-center justify-between min-h-[72px] py-2">
+            <div class="flex items-center justify-between min-h-[64px] sm:min-h-[72px] py-1.5 sm:py-2">
                 
                 <!-- Logo & Brand Identity (Horizontal lockup, 40px icon) -->
-                <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="flex items-center gap-3 group shrink-0 py-1" aria-label="Rayanova T.D Home">
-                    <div class="w-10 h-10 rounded-xl bg-slate-900 border border-rn-line/20 overflow-hidden flex items-center justify-center shadow-md group-hover:border-rn-gold transition-colors shrink-0">
+                <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 py-1" aria-label="Rayanova T.D Home">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-rn-line/20 overflow-hidden flex items-center justify-center shadow-md group-hover:border-rn-gold transition-colors shrink-0">
                         <img src="{{ asset('images/brand/logo-icon.jpg') }}" alt="Rayanova T.D" class="w-full h-full object-cover">
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-serif text-sm font-bold tracking-widest text-white group-hover:text-rn-gold-soft transition-colors uppercase leading-none">
-                            RAYANOVA <span class="text-rn-gold text-xs font-sans font-bold">T.D</span>
+                        <span class="font-serif text-xs sm:text-sm font-bold tracking-widest text-white group-hover:text-rn-gold-soft transition-colors uppercase leading-none">
+                            RAYANOVA <span class="text-rn-gold text-[10px] sm:text-xs font-sans font-bold">T.D</span>
                         </span>
-                        <span class="text-[10px] text-rn-text-3 font-sans tracking-wider hidden sm:block mt-0.5">TUNISIAN EXPORT DESK</span>
+                        <span class="text-[9px] sm:text-[10px] text-rn-text-3 font-sans tracking-wider hidden sm:block mt-0.5">TUNISIAN EXPORT DESK</span>
                     </div>
                 </a>
 
@@ -145,13 +145,13 @@
                 </nav>
 
                 <!-- Actions Right: Language Switcher + Secondary RFQ Cart Button -->
-                <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
                     
-                    <!-- Language Selector Dropdown (44px min-height, rn-glass-light) -->
+                    <!-- Language Selector Dropdown (40-44px min-height, rn-glass-light) -->
                     <div class="relative" x-data="{ open: false }" @click.outside="open = false">
-                        <button @click="open = !open" type="button" class="h-11 flex items-center gap-1.5 px-3 rounded-xl rn-glass-light hover:border-rn-line/30 text-xs sm:text-sm font-semibold text-rn-text-1 transition-all cursor-pointer">
+                        <button @click="open = !open" type="button" class="h-10 sm:h-11 flex items-center gap-1 px-2.5 sm:px-3 rounded-xl rn-glass-light hover:border-rn-line/30 text-xs sm:text-sm font-semibold text-rn-text-1 transition-all cursor-pointer">
                             <span>{{ strtoupper(LaravelLocalization::getCurrentLocale()) }}</span>
-                            <svg class="w-3.5 h-3.5 text-rn-text-3 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                            <svg class="w-3 h-3 text-rn-text-3 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                         </button>
                         <div x-show="open" x-transition class="absolute {{ LaravelLocalization::getCurrentLocaleDirection() === 'rtl' ? 'left-0' : 'right-0' }} mt-2 w-40 rn-glass-strong rounded-xl border border-rn-line/14 shadow-2xl py-1.5 z-50">
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -163,23 +163,23 @@
                         </div>
                     </div>
 
-                    <!-- Quote Cart Trigger Button (Quieter secondary glass style + gold counter badge, 44px height) -->
+                    <!-- Quote Cart Trigger Button (Quieter secondary glass style + gold counter badge, 40-44px height) -->
                     <button type="button" 
                             @click="$dispatch('toggle-quote-cart')" 
-                            class="relative h-11 flex items-center gap-2 px-3.5 sm:px-4 rounded-xl rn-glass-light hover:border-rn-line/30 text-rn-text-1 font-semibold text-xs sm:text-sm transition-all hover:bg-rn-bg-2/60 cursor-pointer"
+                            class="relative h-10 sm:h-11 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 rounded-xl rn-glass-light hover:border-rn-line/30 text-rn-text-1 font-semibold text-xs sm:text-sm transition-all hover:bg-rn-bg-2/60 cursor-pointer"
                             aria-label="View Quote Cart">
                         <svg class="w-4 h-4 text-rn-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                         <span class="hidden sm:inline">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'سلة التسعيرة' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Devis' : 'RFQ Cart') }}</span>
                         <!-- Live Counter Badge -->
-                        <span class="min-w-[20px] h-5 px-1.5 rounded-full bg-rn-gold text-rn-bg-0 flex items-center justify-center text-[11px] font-bold shadow-sm" x-data="{ count: 0 }" x-on:cart-updated.window="count = $event.detail.count" x-text="count">0</span>
+                        <span class="min-w-[18px] sm:min-w-[20px] h-4.5 sm:h-5 px-1.5 rounded-full bg-rn-gold text-rn-bg-0 flex items-center justify-center text-[10px] sm:text-[11px] font-bold shadow-sm" x-data="{ count: 0 }" x-on:cart-updated.window="count = $event.detail.count" x-text="count">0</span>
                     </button>
 
-                    <!-- Mobile Hamburger Menu Button (44x44 target) -->
+                    <!-- Mobile Hamburger Menu Button (40-44px target) -->
                     <button type="button" 
                             @click="openMenu = !openMenu" 
                             :aria-expanded="openMenu"
                             aria-controls="mobile-navigation-sheet"
-                            class="lg:hidden h-11 w-11 flex items-center justify-center rounded-xl rn-glass-light border border-rn-line/20 text-rn-text-1 shadow-sm cursor-pointer shrink-0" 
+                            class="lg:hidden h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-xl rn-glass-light border border-rn-line/20 text-rn-text-1 shadow-sm cursor-pointer shrink-0" 
                             aria-label="Toggle Navigation">
                         <svg x-show="!openMenu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                         <svg x-show="openMenu" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
