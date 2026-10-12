@@ -7,26 +7,26 @@
 
     <!-- 2. Products Showroom Scene (§14 & §19 - moved up directly after hero) -->
     <section id="products" class="rn-scene rn-scene--showroom" data-scene style="--scene-z: 20;">
-        <div class="rn-scene__inner space-y-2 lg:space-y-2.5" x-data="{ activeId: {{ $products[0]->id ?? 1 }} }" @showroom-select.window="activeId = $event.detail.id">
+        <div class="rn-scene__inner space-y-1.5 lg:space-y-2" x-data="{ activeId: {{ $products[0]->id ?? 1 }} }" @showroom-select.window="activeId = $event.detail.id">
             
-            <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-1">
-                <div class="flex items-center justify-center gap-2.5 flex-wrap">
-                    <span class="px-3 py-0.5 rounded-full rn-glass-light border border-rn-line/12 text-[10px] font-bold text-rn-gold uppercase tracking-widest font-mono shadow-sm inline-block">
+            <!-- Section Header (Ultra Compact for Single-Screen Viewport Fit) -->
+            <div class="text-center max-w-3xl mx-auto space-y-0.5 reveal-up">
+                <div class="flex items-center justify-center gap-2 flex-wrap">
+                    <span class="px-2.5 py-0.5 rounded-full rn-glass-light border border-rn-line/12 text-[10px] font-bold text-rn-gold uppercase tracking-widest font-mono shadow-sm inline-block">
                         {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'كتالوج التصدير الدولي 2026' : 'Export Catalog & Interactive Packaging' }}
                     </span>
                     <a href="{{ route('catalog.download_pdf', ['locale' => LaravelLocalization::getCurrentLocale(), 'lang' => LaravelLocalization::getCurrentLocale()]) }}"
                        target="_blank"
                        title="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل كتالوج المنتجات الرسمي بصيغة PDF' : 'Download Official B2B Export Catalog PDF' }}"
-                       class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 border border-amber-500/40 transition-all hover:scale-105 shadow-sm cursor-pointer">
+                       class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 border border-amber-500/40 transition-all hover:scale-105 shadow-sm cursor-pointer">
                         <span>📄</span>
                         <span>{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'تحميل الكتالوج (PDF)' : (LaravelLocalization::getCurrentLocale() === 'fr' ? 'Télécharger Catalogue (PDF)' : 'Download B2B Catalog (PDF)') }}</span>
                     </a>
                 </div>
-                <h2 class="font-display text-lg sm:text-xl lg:text-2xl font-bold text-rn-text-1 tracking-tight leading-tight">
+                <h2 class="font-display text-base sm:text-lg lg:text-xl font-bold text-rn-text-1 tracking-tight leading-tight">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'حدد التكوين وسعة التعليب المناسبة لصفقتك' : 'Configure Sizes & Packaging for Your Order' }}
                 </h2>
-                <p class="text-[11px] text-rn-text-2 font-normal leading-normal max-w-2xl mx-auto line-clamp-1">
+                <p class="text-[11px] text-rn-text-2 font-normal leading-tight max-w-xl mx-auto line-clamp-1 hidden sm:block">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' 
                         ? 'اختر الأحجام والعبوات المناسبة لصفقتك مع تقدير فوري للوجستيات الحاوية والشهادات المخبرية.' 
                         : (LaravelLocalization::getCurrentLocale() === 'fr'
@@ -36,8 +36,8 @@
             </div>
 
             <!-- Product Rail (§14, tablist) -->
-            <div class="w-full overflow-x-auto no-scrollbar py-0.5" role="tablist" aria-label="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'قائمة المنتجات التصديرية' : 'Export Products Rail' }}">
-                <div class="flex items-center gap-2.5 min-w-max mx-auto justify-center px-2">
+            <div class="w-full overflow-x-auto no-scrollbar py-0.5 reveal-up" role="tablist" aria-label="{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'قائمة المنتجات التصديرية' : 'Export Products Rail' }}">
+                <div class="flex items-center gap-1.5 sm:gap-2 min-w-max mx-auto justify-center px-1">
                     @foreach($products as $prod)
                         <button type="button" 
                                 role="tab"
@@ -45,18 +45,18 @@
                                 aria-controls="product-{{ $prod->id }}"
                                 :aria-selected="activeId === {{ $prod->id }} ? 'true' : 'false'"
                                 @click="activeId = {{ $prod->id }}"
-                                class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-xl transition-all duration-300 cursor-pointer"
+                                class="inline-flex items-center gap-2 px-2.5 py-1 rounded-xl transition-all duration-200 cursor-pointer"
                                 :class="activeId === {{ $prod->id }} 
-                                    ? 'rn-glass border border-rn-gold shadow-lg shadow-rn-gold/15 ring-2 ring-rn-gold/30 text-rn-text-1 scale-[1.02]' 
+                                    ? 'rn-glass border border-rn-gold shadow-md shadow-rn-gold/15 ring-2 ring-rn-gold/30 text-rn-text-1 scale-[1.01]' 
                                     : 'rn-glass-light border border-rn-line/10 text-rn-text-2 hover:border-rn-line/20 hover:text-rn-text-1'">
-                            <span class="w-7 h-7 rounded-lg overflow-hidden bg-rn-bg-0 shrink-0 border border-rn-line/12">
-                                <img src="{{ $prod->image_url }}" alt="" width="28" height="28" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                            <span class="w-6 h-6 rounded-lg overflow-hidden bg-rn-bg-0 shrink-0 border border-rn-line/12">
+                                <img src="{{ $prod->image_url }}" alt="" width="24" height="24" loading="lazy" decoding="async" class="w-full h-full object-cover">
                             </span>
                             <div class="text-start">
-                                <span class="block text-[10px] font-mono uppercase tracking-wider text-rn-olive leading-tight">
+                                <span class="block text-[9px] font-mono uppercase tracking-wider text-rn-olive leading-none">
                                     {{ $prod->category->localized_name ?? 'Export' }}
                                 </span>
-                                <span class="block text-xs font-bold leading-tight truncate max-w-[130px] sm:max-w-[160px]">
+                                <span class="block text-xs font-bold leading-tight truncate max-w-[110px] sm:max-w-[140px]">
                                     {{ $prod->localized_title }}
                                 </span>
                             </div>
@@ -89,7 +89,7 @@
         <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Bento Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-2">
+            <div class="text-center max-w-3xl mx-auto space-y-2 reveal-up">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full rn-glass-light border border-rn-line/12 text-xs font-mono font-bold text-rn-gold shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-rn-gold"></span>
                     <span class="uppercase tracking-widest">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'المختبر والمعايير الكيميائية التصديرية' : 'Chemical Purity & Lab Analysis Terminal' }}</span>
@@ -108,7 +108,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
                 
                 <!-- Tile 1: Terminal Laboratoire & Pureté Chimique COI (Col-Span-7) -->
-                <div class="lg:col-span-7 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="lg:col-span-7 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group reveal-left">
                     
                     <div class="space-y-5">
                         <!-- Top Bar with Index & Status -->
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Tile 2: Organoleptic & Quality Assurance Console (Col-Span-5) -->
-                <div class="lg:col-span-5 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="lg:col-span-5 rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group reveal-right">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -235,7 +235,7 @@
         <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Logistics Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-2">
+            <div class="text-center max-w-3xl mx-auto space-y-2 reveal-up">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full rn-glass-light border border-rn-line/12 text-xs font-mono font-bold text-rn-cyan shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-rn-cyan"></span>
                     <span class="uppercase tracking-widest">{{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'اللوجستيات والشحن البحري السائب' : 'Global Logistics & Turnkey Export' }}</span>
@@ -251,10 +251,10 @@
             </div>
 
             <!-- 3 Columns Grid (Col 4 / Col 4 / Col 4) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch reveal-stagger">
                 
                 <!-- Tile 1: Logistique Maritime & Capacités Vrac Flexitank -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group reveal-child">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -307,7 +307,7 @@
                 </div>
 
                 <!-- Tile 2: Studio Embouteillage OEM & Private Label -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group reveal-child">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -360,7 +360,7 @@
                 </div>
 
                 <!-- Tile 3: Passerelles Commerciales & Incoterms Mondiaux -->
-                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                <div class="rounded-3xl rn-glass--flat border border-rn-line/12 hover:border-rn-gold/50 p-5 sm:p-6 lg:p-6 flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group reveal-child">
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
@@ -422,7 +422,7 @@
         <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto space-y-2 lg:space-y-3">
+            <div class="text-center max-w-3xl mx-auto space-y-2 lg:space-y-3 reveal-up">
                 <span class="text-xs font-mono font-bold text-rn-olive uppercase tracking-widest px-4 py-1.5 rounded-full rn-glass-light border border-rn-line/12 inline-flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-rn-olive"></span>
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'مسار التتبع وسلسلة الإمداد الكاملة' : 'Farm-to-Port Traceability Timeline' }}
@@ -582,7 +582,7 @@
     <section id="certifications" class="rn-scene rn-scene--certifications" data-scene style="--scene-z: 60;">
         <div class="rn-scene__inner space-y-4 lg:space-y-6">
             
-            <div class="text-center max-w-2xl mx-auto space-y-2 lg:space-y-3">
+            <div class="text-center max-w-2xl mx-auto space-y-2 lg:space-y-3 reveal-up">
                 <span class="text-xs sm:text-sm font-bold text-rn-gold rn-glass-light border border-rn-line/12 px-4 py-1.5 rounded-full uppercase tracking-widest font-mono shadow-sm inline-block">Global Compliance</span>
                 <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-rn-text-1">
                     {{ LaravelLocalization::getCurrentLocale() === 'ar' ? 'الشهادات والتحاليل المخبرية المعتمدة' : 'Accredited Certifications & Lab Analyses' }}
@@ -594,9 +594,9 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 reveal-stagger">
                 @foreach($certificates as $index => $cert)
-                    <div class="p-5 sm:p-6 rounded-3xl rn-glass hover:border-rn-gold space-y-3.5 group cursor-default transition-all border border-rn-line/12 shadow-lg hover:-translate-y-1">
+                    <div class="p-5 sm:p-6 rounded-3xl rn-glass hover:border-rn-gold space-y-3.5 group cursor-default transition-all border border-rn-line/12 shadow-lg hover:-translate-y-1 reveal-child">
                         
                         <div class="w-11 h-11 rounded-2xl bg-rn-bg-0/90 border border-rn-gold/30 flex items-center justify-center text-rn-gold shadow-sm group-hover:scale-105 group-hover:border-rn-gold transition-all duration-300">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
@@ -622,7 +622,7 @@
     <!-- 7. Final Conversion CTA Scene (§19 & §21) -->
     <section id="final-cta" class="rn-scene rn-scene--cta" data-scene style="--scene-z: 70;">
         <div class="rn-scene__inner">
-            <div class="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 py-4 sm:py-6">
+            <div class="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 py-4 sm:py-6 reveal-up">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rn-bg-2/80 border border-rn-line/12 text-xs font-mono font-bold text-rn-gold shadow-sm backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-rn-gold"></span>
                     <span class="uppercase tracking-widest">

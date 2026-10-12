@@ -11,11 +11,11 @@ if (typeof document !== 'undefined') {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Subtle, Staggered Intersection Observer (translateY 20px -> 0, opacity 0 -> 1)
+    // Smooth, Staggered Intersection Observer (translateY 24px -> 0, opacity 0 -> 1)
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.1
+        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.05
     };
 
     const scrollObserver = new IntersectionObserver((entries, observer) => {
@@ -23,12 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-revealed');
                 
+                // If it's a scene, cascade reveal its inner animated elements smoothly
+                if (entry.target.classList.contains('rn-scene')) {
+                    const innerElements = entry.target.querySelectorAll('.reveal-child, .reveal-up, .reveal-scale, .reveal-left, .reveal-right');
+                    innerElements.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.classList.add('is-revealed');
+                        }, Math.min((index + 1) * 60, 400));
+                    });
+                }
+
                 // If it's a staggered container, reveal children sequentially
                 const staggeredChildren = entry.target.querySelectorAll('.reveal-child');
                 staggeredChildren.forEach((child, index) => {
                     setTimeout(() => {
                         child.classList.add('is-revealed');
-                    }, index * 90);
+                    }, index * 80);
                 });
 
                 // Animate stats counters inside revealed element
@@ -41,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe all scroll-animated elements
+    // Observe all scroll-animated scenes and elements
     const elementsToAnimate = document.querySelectorAll(
-        '.reveal-on-scroll, .reveal-up, .reveal-scale, .reveal-stagger, .reveal-left, .reveal-right'
+        '.rn-scene:not(:first-of-type), .reveal-on-scroll, .reveal-up, .reveal-scale, .reveal-stagger, .reveal-left, .reveal-right'
     );
     elementsToAnimate.forEach(el => scrollObserver.observe(el));
 
@@ -104,12 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
         trackedScenes.forEach(s => sceneObserver.observe(s));
     }
 
-    // Safety timeout fallback: ensure all reveal elements are visible after 2.5s even if IO misses
+    // Safety timeout fallback: ensure all reveal elements and scenes are visible after 2s even if IO misses
     setTimeout(() => {
-        document.querySelectorAll('.reveal-on-scroll, .reveal-up, .reveal-scale, .reveal-stagger, .reveal-child').forEach(el => {
+        document.querySelectorAll('.rn-scene, .reveal-on-scroll, .reveal-up, .reveal-scale, .reveal-stagger, .reveal-child, .reveal-left, .reveal-right').forEach(el => {
             el.classList.add('is-revealed');
         });
-    }, 2500);
+    }, 2000);
 
     // Subtle parallax effect on scroll for corporate badges and background orbs (if present)
     const parallaxElements = document.querySelectorAll('[data-parallax]');
