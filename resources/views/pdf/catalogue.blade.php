@@ -8,110 +8,150 @@
     <title>Rayanova T.D — {{ $isRtl ? 'كتالوج التصدير الدولي 2026' : ($lang === 'fr' ? 'Catalogue Export International 2026' : 'Official B2B Export Catalogue 2026') }}</title>
     <style>
         @page {
-            margin: 24px 30px;
+            margin: 22px 28px;
             size: a4 portrait;
         }
+
+        /* Luxury Embedded Fonts (Canva Brochure Grade) */
+        @font-face {
+            font-family: 'Cinzel';
+            src: url('{{ public_path("fonts/Cinzel.ttf") }}') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Cairo';
+            src: url('{{ public_path("fonts/Cairo.ttf") }}') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'Cairo';
+            src: url('{{ public_path("fonts/Cairo.ttf") }}') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Outfit';
+            src: url('{{ public_path("fonts/Outfit.ttf") }}') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'Outfit';
+            src: url('{{ public_path("fonts/Outfit.ttf") }}') format('truetype');
+            font-weight: bold;
+        }
+
         @if($isRtl)
-        body, table, td, th, div, span, p, h1, h2, h3, a, strong {
-            font-family: 'DejaVu Sans', sans-serif !important;
+        body, table, td, th, div, span, p, h2, h3, a {
+            font-family: 'Cairo', 'DejaVu Sans', sans-serif !important;
         }
         @else
-        body, table, td, th, div, span, p, h1, h2, h3, a, strong {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        body, table, td, th, div, span, p, h2, h3, a {
+            font-family: 'Outfit', 'DejaVu Sans', sans-serif !important;
         }
         @endif
+
+        /* Signature Logo Font for Company Name */
+        .brand-logo-text {
+            font-family: 'Cinzel', serif !important;
+            letter-spacing: 2.5px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        body {
+            font-size: 9.5px;
+            line-height: 1.45;
+            color: #1e293b;
+            background-color: #ffffff;
+            direction: {{ $isRtl ? 'rtl' : 'ltr' }};
+        }
         
-        /* Page Header & Footer */
+        /* Page Header */
         .page-header {
             width: 100%;
-            border-bottom: 2px solid #D4AF37;
+            border-bottom: 2px solid #C8A45A;
             padding-bottom: 8px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .header-logo {
             font-size: 16px;
-            font-weight: bold;
             color: #1B3B2B;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
         .header-gold {
-            color: #b48a1d;
+            color: #C8A45A;
         }
         .header-sub {
             font-size: 8px;
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 1px;
         }
         .header-badge {
             text-align: {{ $isRtl ? 'left' : 'right' }};
             font-size: 8px;
             font-weight: bold;
-            color: #b48a1d;
+            color: #B48A1D;
             text-transform: uppercase;
         }
 
-        /* Cover Page Elements */
+        /* Cover Page Container (Canva Luxury Brochure Layout) */
         .cover-container {
-            border: 2px solid #D4AF37;
-            background: #fffdfa;
-            padding: 24px;
+            border: 1.5px solid #C8A45A;
+            background: #FAF8F5;
+            padding: 22px 24px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
         }
         .cover-logo-img {
-            max-height: 65px;
-            margin-bottom: 10px;
+            max-height: 60px;
+            margin-bottom: 8px;
         }
-        .cover-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #0f291e;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 4px;
+        .cover-brand-title {
+            font-size: 26px;
+            color: #1B3B2B;
+            letter-spacing: 3px;
+            margin-bottom: 2px;
         }
         .cover-sub {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
-            color: #b48a1d;
+            color: #B48A1D;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
         }
         .cover-desc {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #334155;
-            max-width: 90%;
-            margin: 0 auto 16px auto;
+            max-width: 92%;
+            margin: 0 auto 14px auto;
             line-height: 1.6;
         }
         .cover-badges-table {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 8px;
             border-collapse: collapse;
         }
         .cover-badge-cell {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 8px 10px;
-            border-radius: 4px;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            padding: 7px 10px;
+            border-radius: 6px;
             text-align: center;
             vertical-align: middle;
         }
         .badge-title {
             font-size: 8px;
             font-weight: bold;
-            color: #b48a1d;
+            color: #B48A1D;
             text-transform: uppercase;
             display: block;
         }
         .badge-val {
             font-size: 9px;
             font-weight: bold;
-            color: #0f291e;
+            color: #1B3B2B;
             display: block;
             margin-top: 2px;
         }
@@ -121,32 +161,32 @@
             background: #1B3B2B;
             color: #ffffff;
             padding: 6px 12px;
-            border-radius: 4px;
-            margin-top: 18px;
-            margin-bottom: 12px;
-            border-left: 4px solid #D4AF37;
+            border-radius: 5px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+            border-left: 4px solid #C8A45A;
         }
         .category-title {
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #ffffff;
         }
         .category-count {
-            font-size: 9px;
-            color: #e2e8f0;
+            font-size: 8.5px;
+            color: #E2E8F0;
             float: {{ $isRtl ? 'left' : 'right' }};
             font-weight: normal;
         }
 
-        /* Product Card / Layout */
+        /* Product Showcase Card */
         .product-card {
-            border: 1px solid #e2e8f0;
+            border: 1px solid #E2E8F0;
             background-color: #ffffff;
             border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 14px;
+            padding: 9px;
+            margin-bottom: 12px;
             page-break-inside: avoid;
         }
         .product-table {
@@ -154,41 +194,41 @@
             border-collapse: collapse;
         }
         .product-img-cell {
-            width: 28%;
+            width: 27%;
             text-align: center;
             vertical-align: top;
-            background-color: #faf8f5;
-            border: 1px solid #eedfbe;
-            border-radius: 4px;
+            background-color: #FAF9F6;
+            border: 1px solid #EAE5D9;
+            border-radius: 5px;
             padding: 8px;
         }
         .product-img {
             max-width: 100%;
-            max-height: 125px;
+            max-height: 115px;
             object-fit: contain;
         }
         .product-info-cell {
-            width: 72%;
+            width: 73%;
             vertical-align: top;
-            padding-{{ $isRtl ? 'right' : 'left' }}: 14px;
+            padding-{{ $isRtl ? 'right' : 'left' }}: 12px;
         }
         .product-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
-            color: #0f291e;
+            color: #0F291E;
             margin-bottom: 2px;
         }
         .product-sub {
-            font-size: 9px;
+            font-size: 8.5px;
             font-weight: bold;
-            color: #b48a1d;
+            color: #B48A1D;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
         .product-desc {
-            font-size: 9px;
+            font-size: 8.5px;
             color: #475569;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
             line-height: 1.45;
         }
         
@@ -196,67 +236,67 @@
         .specs-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 6px;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
+            margin-top: 5px;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
             border-radius: 4px;
         }
         .specs-table th {
-            background-color: #f1f5f9;
-            color: #0f291e;
-            font-size: 8px;
+            background-color: #F1F5F9;
+            color: #0F291E;
+            font-size: 7.5px;
             font-weight: bold;
             text-transform: uppercase;
-            padding: 4px 6px;
-            border-bottom: 1px solid #cbd5e1;
+            padding: 3.5px 6px;
+            border-bottom: 1px solid #CBD5E1;
             text-align: {{ $isRtl ? 'right' : 'left' }};
         }
         .specs-table td {
-            padding: 4px 6px;
-            font-size: 8.5px;
+            padding: 3.5px 6px;
+            font-size: 8px;
             color: #334155;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #E2E8F0;
         }
         .spec-label {
             font-weight: bold;
             color: #64748b;
-            width: 38%;
+            width: 36%;
         }
         .spec-val {
             font-weight: bold;
-            color: #0f291e;
+            color: #0F291E;
         }
 
         .tag-pill {
             display: inline-block;
-            background-color: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
-            padding: 1px 5px;
+            background-color: #FEF9EE;
+            color: #8A6E20;
+            border: 1px solid #F0DFB0;
+            padding: 1.5px 5px;
             border-radius: 3px;
             font-size: 7.5px;
             font-weight: bold;
-            margin-right: 3px;
-            margin-bottom: 3px;
+            margin-right: 2px;
+            margin-bottom: 2px;
         }
 
         /* Commercial Terms & Footer Page */
         .terms-box {
-            border: 1px solid #cbd5e1;
-            background-color: #f8fafc;
+            border: 1px solid #CBD5E1;
+            background-color: #F8FAFC;
             border-radius: 6px;
-            padding: 12px;
-            margin-top: 16px;
+            padding: 10px 12px;
+            margin-top: 14px;
             page-break-inside: avoid;
         }
         .terms-title {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: bold;
             color: #1B3B2B;
             text-transform: uppercase;
-            border-bottom: 1px solid #cbd5e1;
+            border-bottom: 1px solid #CBD5E1;
             padding-bottom: 4px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .terms-grid {
             width: 100%;
@@ -270,24 +310,21 @@
 
         .footer-table {
             width: 100%;
-            border-top: 1px solid #D4AF37;
-            padding-top: 8px;
-            margin-top: 18px;
-            font-size: 8px;
+            border-top: 1px solid #C8A45A;
+            padding-top: 6px;
+            margin-top: 14px;
+            font-size: 7.5px;
             color: #64748b;
-        }
-        .page-break {
-            page-break-after: always;
         }
     </style>
 </head>
 <body>
 
-    <!-- ==================== HEADER REUTILISABLE ==================== -->
+    <!-- ==================== HEADER (LOGO & BRANDING) ==================== -->
     <table class="page-header">
         <tr>
             <td style="width: 60%; vertical-align: middle;">
-                <div class="header-logo">RAYANOVA <span class="header-gold">T.D</span></div>
+                <div class="header-logo brand-logo-text">RAYANOVA <span class="header-gold">T.D</span></div>
                 <div class="header-sub">
                     {{ $isRtl ? $ar('التجارة الدولية والتصدير الزراعي المتوسطي • تونس (RAYANOVA T.D)') : ($lang === 'fr' ? 'Négoce International & Agro-Export Méditerranéen • Tunisie' : 'International Trade & Agro-Export • Tunisia') }}
                 </div>
@@ -299,13 +336,13 @@
         </tr>
     </table>
 
-    <!-- ==================== COUVERTURE OFFICIELLE B2B ==================== -->
+    <!-- ==================== COUVERTURE LUXE (CANVA BROCHURE STYLE) ==================== -->
     <div class="cover-container">
         @if(!empty($logoPath) && file_exists($logoPath))
             <img src="{{ $logoPath }}" class="cover-logo-img" alt="Rayanova T.D Logo">
         @endif
 
-        <div class="cover-title">RAYANOVA T.D</div>
+        <div class="cover-brand-title brand-logo-text">RAYANOVA <span class="header-gold">T.D</span></div>
         <div class="cover-sub">
             {{ $isRtl ? $ar('كتالوج الصادرات الزراعية والغذائية التونسية 2026 (Official Export Catalogue)') : ($lang === 'fr' ? 'Catalogue Officiel Agroalimentaire Export 2026' : 'Official Agri-Food Export Catalogue 2026') }}
         </div>
@@ -374,9 +411,9 @@
                                 @if($prodImagePath && file_exists($prodImagePath))
                                     <img src="{{ $prodImagePath }}" class="product-img" alt="{{ $rawTitle }}">
                                 @else
-                                    <div style="font-size: 8px; color: #94a3b8; padding-top: 30px;">[ Packaging Image ]</div>
+                                    <div style="font-size: 8px; color: #94a3b8; padding-top: 25px;">[ Packaging Image ]</div>
                                 @endif
-                                <div style="margin-top: 6px; font-size: 7.5px; font-weight: bold; color: #0f291e; text-transform: uppercase;">
+                                <div style="margin-top: 5px; font-size: 7.5px; font-weight: bold; color: #0F291E; text-transform: uppercase;">
                                     {{ $product->slug }}
                                 </div>
                             </td>
@@ -393,8 +430,8 @@
                                 @endif
 
                                 <!-- Formats de Conditionnement & Volumes -->
-                                <div style="margin-bottom: 6px;">
-                                    <strong style="font-size: 8px; color: #64748b; text-transform: uppercase;">
+                                <div style="margin-bottom: 5px;">
+                                    <strong style="font-size: 7.5px; color: #64748b; text-transform: uppercase;">
                                         {{ $isRtl ? $ar('خيارات التعبئة والأحجام المتاحة (Packaging Formats):') : ($lang === 'fr' ? 'Conditionnements & Formats Disponibles :' : 'Export Packagings & Available Sizes:') }}
                                     </strong>
                                     <div style="margin-top: 2px;">
@@ -405,7 +442,7 @@
                                         @endif
                                         @if($product->allowed_sizes)
                                             @foreach($product->allowed_sizes as $sz)
-                                                <span class="tag-pill" style="background-color: #f1f5f9; color: #0f291e; border-color: #cbd5e1;">{{ $sz }}</span>
+                                                <span class="tag-pill" style="background-color: #F1F5F9; color: #0F291E; border-color: #CBD5E1;">{{ $sz }}</span>
                                             @endforeach
                                         @endif
                                     </div>
@@ -466,19 +503,19 @@
         <table class="terms-grid">
             <tr>
                 <td class="terms-col">
-                    <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
+                    <strong style="color: #0F291E; font-size: 8px; display: block; margin-bottom: 2px;">
                         {{ $isRtl ? $ar('1. شروط الدفع المعتمدة (Payment Terms):') : ($lang === 'fr' ? '1. Modalités de Paiement :' : '1. Accepted Payment Terms:') }}
                     </strong>
-                    <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0;">
+                    <p style="font-size: 7.5px; color: #475569; margin: 0 0 5px 0;">
                         • {{ $isRtl ? $ar('اعتماد مستندي معزز غير قابل للإلغاء (Irrevocable L/C at sight)') : 'Irrevocable Confirmed Letter of Credit (L/C at sight)' }}<br>
                         • {{ $isRtl ? $ar('تسليم المستندات مقابل الدفع (CAD / D/P via first-class bank)') : 'Cash Against Documents (CAD / D/P via first-class international bank)' }}<br>
                         • {{ $isRtl ? $ar('تحويل بنكي (T/T: 30% دفعة أولى عند التأكيد، 70% مقابل بوليصة B/L)') : 'T/T Wire Transfer (30% deposit upon order confirmation, 70% against B/L copy)' }}
                     </p>
 
-                    <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
+                    <strong style="color: #0F291E; font-size: 8px; display: block; margin-bottom: 2px;">
                         {{ $isRtl ? $ar('2. الوثائق المرفقة بالشحنة (Export Documentation):') : ($lang === 'fr' ? '2. Documentation Fournie :' : '2. Standard Export Documentation:') }}
                     </strong>
-                    <p style="font-size: 8px; color: #475569; margin: 0;">
+                    <p style="font-size: 7.5px; color: #475569; margin: 0;">
                         • {{ $isRtl ? $ar('الفاتورة التجارية الرسمية (Commercial Invoice - 3 originals + 3 copies)') : 'Commercial Invoice (3 originals + 3 copies)' }}<br>
                         • {{ $isRtl ? $ar('بوليصة الشحن البحري النظيفة (Clean on Board Ocean B/L - 3/3 Full Set)') : 'Clean on Board Ocean Bill of Lading (3/3 Full Set)' }}<br>
                         • {{ $isRtl ? $ar('شهادة المنشأ التفضيلية (EUR.1 Movement Certificate / Chamber of Commerce)') : 'Certificate of Origin (EUR.1 / Arab League / Chamber of Commerce)' }}<br>
@@ -488,11 +525,11 @@
                 </td>
 
                 <td class="terms-col">
-                    <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
+                    <strong style="color: #0F291E; font-size: 8px; display: block; margin-bottom: 2px;">
                         {{ $isRtl ? $ar('3. مكتب التصدير والاتصال المباشر (Export Desk):') : ($lang === 'fr' ? '3. Contact Desk & Demandes de Cotation :' : '3. Export Desk & Direct Quotations:') }}
                     </strong>
-                    <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0; line-height: 1.4;">
-                        <strong>RAYANOVA TRADING & DISTRIBUTION SARL</strong><br>
+                    <p style="font-size: 7.5px; color: #475569; margin: 0 0 5px 0; line-height: 1.4;">
+                        <strong class="brand-logo-text" style="font-size: 8.5px;">RAYANOVA TRADING & DISTRIBUTION SARL</strong><br>
                         Rue Omar Kaddah, Imm. Montplaisir 2ème étage B25, Av. Khaireddine Pacha, 1073 Tunis<br>
                         <strong>RNE (Identifiant Unique) :</strong> 1975095B &nbsp;|&nbsp; <strong>Registre N° :</strong> B50148372026<br>
                         <strong>Extrait RNE :</strong> ER20260645525 &nbsp;|&nbsp; <strong>Capital :</strong> 20 000 TND<br>
@@ -501,7 +538,7 @@
                         <strong>Web :</strong> www.rayanovatd.com
                     </p>
 
-                    <div style="background-color: #f1f5f9; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 8px; color: #0f291e;">
+                    <div style="background-color: #F1F5F9; padding: 5px 8px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 7.5px; color: #0F291E;">
                         <strong>{{ $isRtl ? $ar('طلب تسعيرة رسمية فورية (Submit Direct RFQ):') : ($lang === 'fr' ? 'Demande de Cotation Instantanée :' : 'Submit Direct RFQ:') }}</strong><br>
                         {{ $isRtl ? $ar('يمكنكم تقديم طلبات عروض الأسعار الرسمية مباشرة عبر المنصة مع تحديد نوع التعبئة والكمية وميناء الوصول Incoterms 2020.') : 'Submit instant RFQs with desired packaging, volume and destination port on our portal.' }}
                     </div>
@@ -514,7 +551,7 @@
     <table class="footer-table">
         <tr>
             <td style="width: 50%;">
-                RAYANOVA T.D SARL &copy; {{ date('Y') }} • All Rights Reserved.
+                <span class="brand-logo-text">RAYANOVA T.D</span> SARL &copy; {{ date('Y') }} • All Rights Reserved.
             </td>
             <td style="width: 50%; text-align: {{ $isRtl ? 'left' : 'right' }};">
                 {{ $isRtl ? $ar('كتالوج التصدير الدولي • سري ومخصص للمهنيين والمستوردين (B2B Confidential)') : 'Confidential B2B Commodity Export Catalogue' }}

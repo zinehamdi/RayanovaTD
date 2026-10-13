@@ -192,6 +192,7 @@ log_success "Storage symlink checked."
 # 10. Fix File & Directory Permissions
 # ------------------------------------------------------------------------------
 log_info "Enforcing permissions on storage and bootstrap/cache..."
+mkdir -p storage/fonts
 chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 log_success "Permissions set."
 
