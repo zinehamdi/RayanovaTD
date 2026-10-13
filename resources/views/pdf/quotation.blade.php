@@ -8,8 +8,8 @@
             margin: 28px 36px;
             size: a4 portrait;
         }
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        body, table, td, th, div, span, p, h1, h2, h3, a, strong {
+            font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
             font-size: 10px;
             line-height: 1.45;
             color: #0f172a;

@@ -1,3 +1,6 @@
+@php
+    $ar = $ar ?? fn(?string $t) => $t;
+@endphp
 <!DOCTYPE html>
 <html lang="{{ $lang }}" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
 <head>
@@ -8,14 +11,15 @@
             margin: 24px 30px;
             size: a4 portrait;
         }
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            line-height: 1.45;
-            color: #1e293b;
-            background-color: #ffffff;
-            direction: {{ $isRtl ? 'rtl' : 'ltr' }};
+        @if($isRtl)
+        body, table, td, th, div, span, p, h1, h2, h3, a, strong {
+            font-family: 'DejaVu Sans', sans-serif !important;
         }
+        @else
+        body, table, td, th, div, span, p, h1, h2, h3, a, strong {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+        @endif
         
         /* Page Header & Footer */
         .page-header {
@@ -285,11 +289,11 @@
             <td style="width: 60%; vertical-align: middle;">
                 <div class="header-logo">RAYANOVA <span class="header-gold">T.D</span></div>
                 <div class="header-sub">
-                    {{ $isRtl ? 'التجارة الدولية والتصدير الزراعي المتوسطي • تونس' : ($lang === 'fr' ? 'Négoce International & Agro-Export Méditerranéen • Tunisie' : 'International Trade & Agro-Export • Tunisia') }}
+                    {{ $isRtl ? $ar('التجارة الدولية والتصدير الزراعي المتوسطي • تونس (RAYANOVA T.D)') : ($lang === 'fr' ? 'Négoce International & Agro-Export Méditerranéen • Tunisie' : 'International Trade & Agro-Export • Tunisia') }}
                 </div>
             </td>
             <td class="header-badge" style="width: 40%; vertical-align: middle;">
-                <div>{{ $isRtl ? 'كتالوج التصدير الرسمي • موسم 2026' : ($lang === 'fr' ? 'Catalogue Officiel Export • Récolte 2026' : 'Official Export Catalogue • Harvest 2026') }}</div>
+                <div>{{ $isRtl ? $ar('كتالوج التصدير الرسمي • موسم 2026 (Export Catalogue)') : ($lang === 'fr' ? 'Catalogue Officiel Export • Récolte 2026' : 'Official Export Catalogue • Harvest 2026') }}</div>
                 <div style="font-size: 7.5px; color: #64748b; margin-top: 2px;">ISO 22000 • EU BIO • FDA • COI Lab</div>
             </td>
         </tr>
@@ -303,12 +307,12 @@
 
         <div class="cover-title">RAYANOVA T.D</div>
         <div class="cover-sub">
-            {{ $isRtl ? 'كتالوج الصادرات الزراعية والغذائية التونسية 2026' : ($lang === 'fr' ? 'Catalogue Officiel Agroalimentaire Export 2026' : 'Official Agri-Food Export Catalogue 2026') }}
+            {{ $isRtl ? $ar('كتالوج الصادرات الزراعية والغذائية التونسية 2026 (Official Export Catalogue)') : ($lang === 'fr' ? 'Catalogue Officiel Agroalimentaire Export 2026' : 'Official Agri-Food Export Catalogue 2026') }}
         </div>
 
         <p class="cover-desc">
             {{ $isRtl 
-                ? 'دليل السلع الغذائية الفاخرة المخصصة للتصدير الدولي: زيت زيتون بكر ممتاز تونسي معتمد، تمور دجلة النور الملكية الطبيعية، الطماطم المجففة بالشمس والهريسة، والتونة المعلبة الفاخرة. مطابقة لمعايير الجودة الأوروبية والأمريكية والخليجية.'
+                ? $ar('دليل السلع الغذائية الفاخرة المخصصة للتصدير الدولي: زيت زيتون بكر ممتاز تونسي معتمد من المجلس الدولي للزيتون (COI Certified)، تمور دجلة النور الملكية، الطماطم المجففة بالشمس والهريسة، والتونة المعلبة الفاخرة. مطابقة كاملة لمعايير الجودة الأوروبية والأمريكية والخليجية (EU BIO • FDA • ISO 22000) مع شحن بحري سريع FCL وخزانات Flexitank وفق شروط Incoterms 2020.')
                 : ($lang === 'fr'
                     ? 'Guide officiel des produits d\'exportation premium : Huile d\'olive vierge extra tunisienne certifiée COI, dattes Deglet Nour branchées de Tozeur, tomates séchées et harissa artisanale, thon entier de Méditerranée. Expéditions maritimes FCL & vrac flexitank conformes Incoterms 2020.'
                     : 'Official international B2B export catalogue featuring certified Tunisian Extra Virgin Olive Oils (COI accredited), premium Deglet Nour branched dates, sun-dried Mediterranean tomatoes, harissa and solid white tuna. Containerized FCL & bulk flexitank deliveries under Incoterms 2020.') }}
@@ -318,19 +322,19 @@
         <table class="cover-badges-table">
             <tr>
                 <td class="cover-badge-cell" style="width: 25%;">
-                    <span class="badge-title">{{ $isRtl ? 'شروط التسليم' : 'Delivery Terms' }}</span>
+                    <span class="badge-title">{{ $isRtl ? $ar('شروط التسليم (Incoterms)') : 'Delivery Terms' }}</span>
                     <span class="badge-val">FOB • CIF • CFR • EXW</span>
                 </td>
                 <td class="cover-badge-cell" style="width: 25%;">
-                    <span class="badge-title">{{ $isRtl ? 'الموانئ التونسية' : 'Tunisian Gateways' }}</span>
+                    <span class="badge-title">{{ $isRtl ? $ar('الموانئ التونسية (Ports)') : 'Tunisian Gateways' }}</span>
                     <span class="badge-val">Port of Rades & Sfax</span>
                 </td>
                 <td class="cover-badge-cell" style="width: 25%;">
-                    <span class="badge-title">{{ $isRtl ? 'شهادات الجودة' : 'Certifications' }}</span>
+                    <span class="badge-title">{{ $isRtl ? $ar('شهادات الجودة (Quality)') : 'Certifications' }}</span>
                     <span class="badge-val">EU BIO • FDA • ISO 22000</span>
                 </td>
                 <td class="cover-badge-cell" style="width: 25%;">
-                    <span class="badge-title">{{ $isRtl ? 'وسائط الشحن' : 'Logistics Modes' }}</span>
+                    <span class="badge-title">{{ $isRtl ? $ar('وسائط الشحن (Logistics)') : 'Logistics Modes' }}</span>
                     <span class="badge-val">FCL • LCL • Flexitank 24,000L</span>
                 </td>
             </tr>
@@ -343,18 +347,22 @@
             
             <div class="category-header">
                 <span class="category-title">
-                    {{ $isRtl ? ($category->name['ar'] ?? $category->name['en'] ?? '') : ($lang === 'fr' ? ($category->name['fr'] ?? $category->name['en'] ?? '') : ($category->name['en'] ?? '')) }}
+                    {{ $isRtl ? $ar($category->name['ar'] ?? $category->name['en'] ?? '') : ($lang === 'fr' ? ($category->name['fr'] ?? $category->name['en'] ?? '') : ($category->name['en'] ?? '')) }}
                 </span>
                 <span class="category-count">
-                    {{ $category->products->count() }} {{ $isRtl ? 'منتجات معتمدة' : ($lang === 'fr' ? 'produits certifiés' : 'certified products') }}
+                    {{ $category->products->count() }} {{ $isRtl ? $ar('منتجات معتمدة (Products)') : ($lang === 'fr' ? 'produits certifiés' : 'certified products') }}
                 </span>
             </div>
 
             @foreach($category->products as $product)
                 @php
-                    $prodTitle = $isRtl ? ($product->title['ar'] ?? $product->title['en'] ?? '') : ($lang === 'fr' ? ($product->title['fr'] ?? $product->title['en'] ?? '') : ($product->title['en'] ?? ''));
-                    $prodSubtitle = $isRtl ? ($product->subtitle['ar'] ?? $product->subtitle['en'] ?? '') : ($lang === 'fr' ? ($product->subtitle['fr'] ?? $product->subtitle['en'] ?? '') : ($product->subtitle['en'] ?? ''));
-                    $prodDesc = $isRtl ? ($product->description['ar'] ?? $product->description['en'] ?? '') : ($lang === 'fr' ? ($product->description['fr'] ?? $product->description['en'] ?? '') : ($product->description['en'] ?? ''));
+                    $rawTitle = $isRtl ? ($product->title['ar'] ?? $product->title['en'] ?? '') : ($lang === 'fr' ? ($product->title['fr'] ?? $product->title['en'] ?? '') : ($product->title['en'] ?? ''));
+                    $rawSubtitle = $isRtl ? ($product->subtitle['ar'] ?? $product->subtitle['en'] ?? '') : ($lang === 'fr' ? ($product->subtitle['fr'] ?? $product->subtitle['en'] ?? '') : ($product->subtitle['en'] ?? ''));
+                    $rawDesc = $isRtl ? ($product->description['ar'] ?? $product->description['en'] ?? '') : ($lang === 'fr' ? ($product->description['fr'] ?? $product->description['en'] ?? '') : ($product->description['en'] ?? ''));
+                    
+                    $prodTitle = $isRtl ? $ar($rawTitle) : $rawTitle;
+                    $prodSubtitle = $isRtl ? $ar($rawSubtitle) : $rawSubtitle;
+                    $prodDesc = $isRtl ? $ar($rawDesc) : $rawDesc;
                     $prodImagePath = $productImagePaths[$product->id] ?? null;
                 @endphp
 
@@ -364,7 +372,7 @@
                             <!-- Image du Produit -->
                             <td class="product-img-cell">
                                 @if($prodImagePath && file_exists($prodImagePath))
-                                    <img src="{{ $prodImagePath }}" class="product-img" alt="{{ $prodTitle }}">
+                                    <img src="{{ $prodImagePath }}" class="product-img" alt="{{ $rawTitle }}">
                                 @else
                                     <div style="font-size: 8px; color: #94a3b8; padding-top: 30px;">[ Packaging Image ]</div>
                                 @endif
@@ -387,7 +395,7 @@
                                 <!-- Formats de Conditionnement & Volumes -->
                                 <div style="margin-bottom: 6px;">
                                     <strong style="font-size: 8px; color: #64748b; text-transform: uppercase;">
-                                        {{ $isRtl ? 'خيارات التعبئة والأحجام المتاحة:' : ($lang === 'fr' ? 'Conditionnements & Formats Disponibles :' : 'Export Packagings & Available Sizes:') }}
+                                        {{ $isRtl ? $ar('خيارات التعبئة والأحجام المتاحة (Packaging Formats):') : ($lang === 'fr' ? 'Conditionnements & Formats Disponibles :' : 'Export Packagings & Available Sizes:') }}
                                     </strong>
                                     <div style="margin-top: 2px;">
                                         @if($product->allowed_packaging_types)
@@ -406,35 +414,35 @@
                                 <!-- Tableau des Spécifications Physico-Chimiques & Logistiques -->
                                 <table class="specs-table">
                                     <tr>
-                                        <td class="spec-label">{{ $isRtl ? 'المصدر والصنف' : ($lang === 'fr' ? 'Origine & Variété' : 'Origin & Cultivar') }}</td>
+                                        <td class="spec-label">{{ $isRtl ? $ar('المصدر والصنف (Origin & Cultivar)') : ($lang === 'fr' ? 'Origine & Variété' : 'Origin & Cultivar') }}</td>
                                         <td class="spec-val">
                                             @if(str_contains(strtolower($product->slug), 'olive'))
-                                                100% Tunisia (Chemlali / Chetoui) • First Cold Extraction
+                                                {{ $isRtl ? $ar('تونس 100% (شملالي / شتوي) • عصر أول على البارد (100% Tunisia - Cold Extraction)') : '100% Tunisia (Chemlali / Chetoui) • First Cold Extraction' }}
                                             @elseif(str_contains(strtolower($product->slug), 'date'))
-                                                Tozeur & Kebili Oases (Tunisia) • Hand Selected
+                                                {{ $isRtl ? $ar('واحات توزر وقبلي (تونس) • فرز يدوي طبيعي (Tozeur & Kebili Oases)') : 'Tozeur & Kebili Oases (Tunisia) • Hand Selected' }}
                                             @elseif(str_contains(strtolower($product->slug), 'tomato') || str_contains(strtolower($product->slug), 'harissa'))
-                                                Cap Bon & Sidi Bouzid Terroir • Sun-Dried Natural
+                                                {{ $isRtl ? $ar('الوطن القبلي وسيدي بوزيد • تجفيف شمسي طبيعي (Cap Bon Terroir)') : 'Cap Bon & Sidi Bouzid Terroir • Sun-Dried Natural' }}
                                             @else
-                                                Tunisian Mediterranean Coastline • Quality Grade A
+                                                {{ $isRtl ? $ar('السواحل التونسية المتوسطية • جودة تصديرية أولى (Tunisia Coastline Grade A)') : 'Tunisian Mediterranean Coastline • Quality Grade A' }}
                                             @endif
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="spec-label">{{ $isRtl ? 'معايير الجودة والتحاليل' : ($lang === 'fr' ? 'Spécifications Laboratoire' : 'Lab Specifications') }}</td>
+                                        <td class="spec-label">{{ $isRtl ? $ar('المعايير المخبرية (Lab Specifications)') : ($lang === 'fr' ? 'Spécifications Laboratoire' : 'Lab Specifications') }}</td>
                                         <td class="spec-val">
                                             @if(str_contains(strtolower($product->slug), 'olive'))
-                                                Acidity &le; 0.2% - 0.5% | Peroxide &le; 10 meq O2/kg | COI Standard Compliant
+                                                {{ $isRtl ? $ar('حموضة حرة Acidity ≤ 0.18% - 0.5% | مؤشر بيروكسيد Peroxide ≤ 6.2 meq | معتمد COI') : 'Acidity ≤ 0.2% - 0.5% | Peroxide ≤ 10 meq O2/kg | COI Standard Compliant' }}
                                             @elseif(str_contains(strtolower($product->slug), 'date'))
-                                                Moisture &le; 20% | Purity &ge; 99% | Natural Sun-Cured
+                                                {{ $isRtl ? $ar('رطوبة Moisture ≤ 20% | نقاوة Purity ≥ 99% | تمور منتقاة طبيعياً') : 'Moisture ≤ 20% | Purity ≥ 99% | Natural Sun-Cured' }}
                                             @else
-                                                phytosanitary certified | Heavy metals: Non-detected | Microbio: Safe
+                                                {{ $isRtl ? $ar('فحص صحي نباتي رسمي | خلو تام من المعادن الثقيلة | مطابقة ميكروبيولوجية') : 'phytosanitary certified | Heavy metals: Non-detected | Microbio: Safe' }}
                                             @endif
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="spec-label">{{ $isRtl ? 'لوجستيك الحاويات' : ($lang === 'fr' ? 'Capacité de Chargement' : 'FCL Container Loading') }}</td>
+                                        <td class="spec-label">{{ $isRtl ? $ar('لوجستيات الحاويات (FCL Container)') : ($lang === 'fr' ? 'Capacité de Chargement' : 'FCL Container Loading') }}</td>
                                         <td class="spec-val">
-                                            20ft FCL: ~10-14 Pallets | 40ft High Cube: ~21-26 Pallets | Flexitank: 21,500 - 24,000 Liters
+                                            {{ $isRtl ? $ar('حاوية 20ft FCL: 10-14 منصة | حاوية 40ft HC: 21-26 منصة | خزان Flexitank: 24,000L') : '20ft FCL: ~10-14 Pallets | 40ft High Cube: ~21-26 Pallets | Flexitank: 21,500 - 24,000 Liters' }}
                                         </td>
                                     </tr>
                                 </table>
@@ -452,36 +460,36 @@
     <!-- ==================== CONDITIONS COMMERCIALES & CONTACT ==================== -->
     <div class="terms-box">
         <div class="terms-title">
-            {{ $isRtl ? 'شروط التصدير والتسليم الدولي (Incoterms 2020)' : ($lang === 'fr' ? 'Conditions Générales d\'Exportation & Modalités Commerciales' : 'General Export Terms & International Trade Desk') }}
+            {{ $isRtl ? $ar('شروط التصدير والتسليم الدولي (Incoterms 2020 & Trade Terms)') : ($lang === 'fr' ? 'Conditions Générales d\'Exportation & Modalités Commerciales' : 'General Export Terms & International Trade Desk') }}
         </div>
         
         <table class="terms-grid">
             <tr>
                 <td class="terms-col">
                     <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
-                        {{ $isRtl ? '1. شروط الدفع المعتمدة:' : ($lang === 'fr' ? '1. Modalités de Paiement :' : '1. Accepted Payment Terms:') }}
+                        {{ $isRtl ? $ar('1. شروط الدفع المعتمدة (Payment Terms):') : ($lang === 'fr' ? '1. Modalités de Paiement :' : '1. Accepted Payment Terms:') }}
                     </strong>
                     <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0;">
-                        • Irrevocable Confirmed Letter of Credit (L/C at sight)<br>
-                        • Cash Against Documents (CAD / D/P via first-class international bank)<br>
-                        • T/T Wire Transfer (30% deposit upon order confirmation, 70% against B/L copy)
+                        • {{ $isRtl ? $ar('اعتماد مستندي معزز غير قابل للإلغاء (Irrevocable L/C at sight)') : 'Irrevocable Confirmed Letter of Credit (L/C at sight)' }}<br>
+                        • {{ $isRtl ? $ar('تسليم المستندات مقابل الدفع (CAD / D/P via first-class bank)') : 'Cash Against Documents (CAD / D/P via first-class international bank)' }}<br>
+                        • {{ $isRtl ? $ar('تحويل بنكي (T/T: 30% دفعة أولى عند التأكيد، 70% مقابل بوليصة B/L)') : 'T/T Wire Transfer (30% deposit upon order confirmation, 70% against B/L copy)' }}
                     </p>
 
                     <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
-                        {{ $isRtl ? '2. الوثائق المرفقة بالشحنة:' : ($lang === 'fr' ? '2. Documentation Fournie :' : '2. Standard Export Documentation:') }}
+                        {{ $isRtl ? $ar('2. الوثائق المرفقة بالشحنة (Export Documentation):') : ($lang === 'fr' ? '2. Documentation Fournie :' : '2. Standard Export Documentation:') }}
                     </strong>
                     <p style="font-size: 8px; color: #475569; margin: 0;">
-                        • Commercial Invoice (3 originals + 3 copies)<br>
-                        • Clean on Board Ocean Bill of Lading (3/3 Full Set)<br>
-                        • Certificate of Origin (EUR.1 / Arab League / Chamber of Commerce)<br>
-                        • Phytosanitary & Health Certificate (Ministry of Agriculture)<br>
-                        • Official Certificate of Analysis (COI Accredited Chemical Laboratory)
+                        • {{ $isRtl ? $ar('الفاتورة التجارية الرسمية (Commercial Invoice - 3 originals + 3 copies)') : 'Commercial Invoice (3 originals + 3 copies)' }}<br>
+                        • {{ $isRtl ? $ar('بوليصة الشحن البحري النظيفة (Clean on Board Ocean B/L - 3/3 Full Set)') : 'Clean on Board Ocean Bill of Lading (3/3 Full Set)' }}<br>
+                        • {{ $isRtl ? $ar('شهادة المنشأ التفضيلية (EUR.1 Movement Certificate / Chamber of Commerce)') : 'Certificate of Origin (EUR.1 / Arab League / Chamber of Commerce)' }}<br>
+                        • {{ $isRtl ? $ar('الشهادة الصحية النباتية الرسمية (Phytosanitary & Health Clearance)') : 'Phytosanitary & Health Certificate (Ministry of Agriculture)' }}<br>
+                        • {{ $isRtl ? $ar('شهادة التحليل المخبري المعتمدة (COI Accredited Lab Certificate of Analysis - CoA)') : 'Official Certificate of Analysis (COI Accredited Chemical Laboratory)' }}
                     </p>
                 </td>
 
                 <td class="terms-col">
                     <strong style="color: #0f291e; font-size: 8.5px; display: block; margin-bottom: 2px;">
-                        {{ $isRtl ? '3. مكتب التصدير وطلب عروض الأسعار:' : ($lang === 'fr' ? '3. Contact Desk & Demandes de Cotation :' : '3. Export Desk & Direct Quotations:') }}
+                        {{ $isRtl ? $ar('3. مكتب التصدير والاتصال المباشر (Export Desk):') : ($lang === 'fr' ? '3. Contact Desk & Demandes de Cotation :' : '3. Export Desk & Direct Quotations:') }}
                     </strong>
                     <p style="font-size: 8px; color: #475569; margin: 0 0 6px 0; line-height: 1.4;">
                         <strong>RAYANOVA TRADING & DISTRIBUTION SARL</strong><br>
@@ -494,8 +502,8 @@
                     </p>
 
                     <div style="background-color: #f1f5f9; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 8px; color: #0f291e;">
-                        <strong>{{ $isRtl ? 'طلب تسعيرة رسمية فورية (RFQ):' : ($lang === 'fr' ? 'Demande de Cotation Instantanée :' : 'Submit Direct RFQ:') }}</strong><br>
-                        {{ $isRtl ? 'يمكنكم إرسال طلبات عروض الأسعار الرسمية عبر الموقع مباشرة مع تحديد ميناء الوصول ونوع التعبئة.' : 'Submit instant RFQs with desired packaging, volume and destination port on our portal.' }}
+                        <strong>{{ $isRtl ? $ar('طلب تسعيرة رسمية فورية (Submit Direct RFQ):') : ($lang === 'fr' ? 'Demande de Cotation Instantanée :' : 'Submit Direct RFQ:') }}</strong><br>
+                        {{ $isRtl ? $ar('يمكنكم تقديم طلبات عروض الأسعار الرسمية مباشرة عبر المنصة مع تحديد نوع التعبئة والكمية وميناء الوصول Incoterms 2020.') : 'Submit instant RFQs with desired packaging, volume and destination port on our portal.' }}
                     </div>
                 </td>
             </tr>
@@ -509,7 +517,7 @@
                 RAYANOVA T.D SARL &copy; {{ date('Y') }} • All Rights Reserved.
             </td>
             <td style="width: 50%; text-align: {{ $isRtl ? 'left' : 'right' }};">
-                {{ $isRtl ? 'كتالوج التصدير الدولي • سري ومخصص للمهنيين والمستوردين' : 'Confidential B2B Commodity Export Catalogue' }}
+                {{ $isRtl ? $ar('كتالوج التصدير الدولي • سري ومخصص للمهنيين والمستوردين (B2B Confidential)') : 'Confidential B2B Commodity Export Catalogue' }}
             </td>
         </tr>
     </table>

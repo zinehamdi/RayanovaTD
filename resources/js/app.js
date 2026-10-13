@@ -114,12 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
         trackedScenes.forEach(s => sceneObserver.observe(s));
     }
 
-    // Safety timeout fallback: ensure all reveal elements and scenes are visible after 2s even if IO misses
+    // Initial viewport check: only reveal elements already visible on load (never pre-reveal offscreen scenes)
     setTimeout(() => {
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         document.querySelectorAll('.rn-scene, .reveal-on-scroll, .reveal-up, .reveal-scale, .reveal-stagger, .reveal-child, .reveal-left, .reveal-right').forEach(el => {
-            el.classList.add('is-revealed');
+            const rect = el.getBoundingClientRect();
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+                el.classList.add('is-revealed');
+            }
         });
-    }, 2000);
+    }, 400);
 
     // Subtle parallax effect on scroll for corporate badges and background orbs (if present)
     const parallaxElements = document.querySelectorAll('[data-parallax]');

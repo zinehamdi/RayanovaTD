@@ -80,12 +80,15 @@ class ProductManagementController extends Controller
             }
         }
 
+        $ar = fn(?string $text) => \App\Services\PdfArabicHelper::format($text, $isRtl);
+
         $pdf = Pdf::loadView('pdf.catalogue', compact(
             'categories',
             'lang',
             'isRtl',
             'logoPath',
-            'productImagePaths'
+            'productImagePaths',
+            'ar'
         ))
         ->setPaper('a4', 'portrait')
         ->setOption([

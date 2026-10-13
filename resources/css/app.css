@@ -250,6 +250,10 @@
 
     /* Desktop Viewport Flow & Natural Staging (Each Section Fits the Screen) */
     @media (min-width: 1024px) {
+        html {
+            scroll-snap-type: y proximity;
+        }
+
         .rn-scene {
             margin: 1rem auto;
             min-height: calc(100svh - var(--rn-header-height) - 2.25rem);
@@ -258,6 +262,7 @@
             justify-content: center;
             padding-block: clamp(1.25rem, 2.5vh, 2.25rem);
             scroll-margin-top: calc(var(--rn-header-height) + 0.5rem);
+            scroll-snap-align: start;
         }
 
         .rn-scene--hero,
@@ -270,11 +275,13 @@
             flex-direction: column;
             justify-content: space-between;
             z-index: 10;
+            scroll-snap-align: start;
         }
 
         .rn-scene--compact {
             min-height: auto;
             padding-block: clamp(1.5rem, 3vh, 2.5rem);
+            scroll-snap-align: start;
         }
     }
 
@@ -290,8 +297,8 @@
     /* Native, Smooth Scroll Entrance Animations for Scenes */
     .js .rn-scene:not(:first-of-type) {
         opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateY(32px);
+        transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: opacity, transform;
     }
     .js .rn-scene.is-revealed,
